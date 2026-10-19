@@ -1,0 +1,20 @@
+{
+  // Publicação na Cloudflare (Workers com assets estáticos).
+  // `npm run build` gera a pasta out/; `npx wrangler deploy` envia para o ar.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "saymon-portfolio",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./out",
+    // /en e /en/ apontam para o mesmo arquivo (en.html)
+    "html_handling": "auto-trailing-slash",
+    // endereço inexistente cai na 404.html gerada pelo Next
+    "not_found_handling": "404-page"
+  },
+  // Domínio próprio: com o DNS do domínio na Cloudflare, o deploy cria os
+  // registros e o certificado HTTPS sozinho.
+  "routes": [
+    { "pattern": "saymonthedev.com", "custom_domain": true },
+    { "pattern": "www.saymonthedev.com", "custom_domain": true }
+  ]
+}

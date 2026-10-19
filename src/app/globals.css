@@ -1,0 +1,725 @@
+@import "tailwindcss";
+@import "lenis/dist/lenis.css";
+
+/* ------------------------------------------------------------------ */
+/* Tokens                                                              */
+/* ------------------------------------------------------------------ */
+
+@theme {
+  --color-ink-950: #05070b;
+  --color-ink-900: #080b12;
+  --color-ink-850: #0b1120;
+  --color-ink-800: #0f172a;
+  --color-ink-700: #1a2436;
+  --color-ink-600: #2a3650;
+
+  --color-fg: #f8fafc;
+  --color-soft: #cbd5e1;
+  --color-muted: #94a3b8;
+  --color-subtle: #8190a5;
+
+  --color-accent: #2563eb;
+  --color-accent-400: #3b82f6;
+  --color-accent-300: #60a5fa;
+  --color-accent-200: #93c5fd;
+  --color-signal: #34d399;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
+
+  --breakpoint-xs: 26rem;
+}
+
+:root {
+  --header-h: 4.5rem;
+  --line: rgb(148 163 184 / 0.12);
+  --line-strong: rgb(148 163 184 / 0.2);
+  color-scheme: dark;
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+
+@layer base {
+  html {
+    background: var(--color-ink-950);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-padding-top: var(--header-h);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background: var(--color-ink-950);
+    min-height: 100dvh;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: rgb(59 130 246 / 0.35);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent-300);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  [tabindex="-1"]:focus {
+    outline: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html:not(.lenis) {
+      scroll-behavior: smooth;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Layout helpers                                                      */
+/* ------------------------------------------------------------------ */
+
+@utility container-page {
+  width: 100%;
+  max-width: 78rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+
+  @media (width >= 48rem) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility text-pretty {
+  text-wrap: pretty;
+}
+
+@layer components {
+  /* Grão sutil sobre a página inteira: dá textura ao preto puro. */
+  .grain::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-accent-200);
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 1.75rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-accent-300));
+  }
+
+  .accent-serif {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    background: linear-gradient(100deg, #f8fafc 0%, #bfdbfe 45%, #60a5fa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    /* Itálicos cortam à direita com background-clip; o padding compensa. */
+    padding-right: 0.08em;
+  }
+
+  /* Superfície padrão de cartões. */
+  .surface {
+    background:
+      linear-gradient(180deg, rgb(255 255 255 / 0.035), rgb(255 255 255 / 0.01)),
+      var(--color-ink-900);
+    border: 1px solid var(--line);
+    box-shadow:
+      0 1px 0 0 rgb(255 255 255 / 0.04) inset,
+      0 30px 60px -40px rgb(0 0 0 / 0.8);
+  }
+
+  /* -------------------------------------------------------------- */
+  /* Spotlight: brilho que segue o cursor na borda e no fundo       */
+  /* -------------------------------------------------------------- */
+
+  .spotlight {
+    position: relative;
+    isolation: isolate;
+    --x: 50%;
+    --y: 50%;
+  }
+
+  .spotlight::before,
+  .spotlight::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s var(--ease-out-quart);
+  }
+
+  /* Borda luminosa (só o contorno, recortado por máscara). */
+  .spotlight::before {
+    z-index: 2;
+    padding: 1px;
+    background: radial-gradient(
+      320px circle at var(--x) var(--y),
+      rgb(147 197 253 / 0.7),
+      rgb(59 130 246 / 0.25) 35%,
+      transparent 65%
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#000 0 0) content-box exclude,
+      linear-gradient(#000 0 0);
+  }
+
+  /* Luz interna suave. */
+  .spotlight::after {
+    z-index: -1;
+    background: radial-gradient(
+      520px circle at var(--x) var(--y),
+      rgb(59 130 246 / 0.09),
+      transparent 55%
+    );
+  }
+
+  [data-spotlight-group]:hover .spotlight::before,
+  .spotlight:hover::before {
+    opacity: 1;
+  }
+
+  .spotlight:hover::after {
+    opacity: 1;
+  }
+
+  @media (hover: none) {
+    .spotlight::before,
+    .spotlight::after {
+      display: none;
+    }
+  }
+
+  /* -------------------------------------------------------------- */
+  /* Links e botões                                                 */
+  /* -------------------------------------------------------------- */
+
+  .link-underline {
+    position: relative;
+    text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 100% 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.45s var(--ease-out-expo), color 0.25s;
+  }
+
+  .link-underline:hover,
+  .link-underline:focus-visible {
+    background-size: 100% 1px;
+    background-position: 0% 100%;
+  }
+
+  .btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    min-height: 3rem;
+    padding: 0 1.375rem;
+    border-radius: 999px;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    letter-spacing: -0.005em;
+    white-space: nowrap;
+    isolation: isolate;
+    overflow: hidden;
+    transition:
+      transform 0.5s var(--ease-out-expo),
+      box-shadow 0.5s var(--ease-out-expo),
+      background-color 0.3s,
+      border-color 0.3s,
+      color 0.3s;
+  }
+
+  .btn:active {
+    transform: scale(0.97);
+  }
+
+  .btn-primary {
+    color: #fff;
+    background: linear-gradient(180deg, #3b82f6, #2563eb);
+    box-shadow:
+      0 0 0 1px rgb(147 197 253 / 0.25) inset,
+      0 1px 0 0 rgb(255 255 255 / 0.25) inset,
+      0 10px 30px -10px rgb(37 99 235 / 0.7);
+  }
+
+  /* Faixa de luz que atravessa o botão no hover. */
+  .btn-primary::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    z-index: -1;
+    background: linear-gradient(
+      105deg,
+      transparent 30%,
+      rgb(255 255 255 / 0.35) 45%,
+      transparent 60%
+    );
+    transform: translateX(-120%);
+    transition: transform 0.9s var(--ease-out-expo);
+  }
+
+  .btn-primary:hover {
+    box-shadow:
+      0 0 0 1px rgb(191 219 254 / 0.4) inset,
+      0 1px 0 0 rgb(255 255 255 / 0.3) inset,
+      0 16px 40px -12px rgb(37 99 235 / 0.9);
+  }
+
+  .btn-primary:hover::after {
+    transform: translateX(120%);
+  }
+
+  .btn-ghost {
+    color: var(--color-fg);
+    background: rgb(255 255 255 / 0.03);
+    border: 1px solid var(--line-strong);
+  }
+
+  .btn-ghost:hover {
+    background: rgb(255 255 255 / 0.06);
+    border-color: rgb(147 197 253 / 0.35);
+  }
+
+  .btn .btn-icon {
+    transition: transform 0.5s var(--ease-out-expo);
+  }
+
+  .btn:hover .btn-icon-x {
+    transform: translateX(3px);
+  }
+
+  .btn:hover .btn-icon-y {
+    transform: translateY(2px);
+  }
+
+  .btn:hover .btn-icon-diag {
+    transform: translate(2px, -2px);
+  }
+
+  /* -------------------------------------------------------------- */
+  /* Feixe de luz percorrendo a borda (contato e cartão do Hero)     */
+  /* -------------------------------------------------------------- */
+
+  .beam-border {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .beam-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    pointer-events: none;
+    background: conic-gradient(
+      from var(--beam-angle),
+      transparent 0deg,
+      transparent 280deg,
+      rgb(96 165 250 / 0.9) 320deg,
+      rgb(255 255 255 / 0.9) 340deg,
+      transparent 360deg
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#000 0 0) content-box exclude,
+      linear-gradient(#000 0 0);
+    animation: beam-spin 7s linear infinite;
+  }
+
+  /* -------------------------------------------------------------- */
+  /* Revelação ao rolar (ativada só com JavaScript)                 */
+  /* -------------------------------------------------------------- */
+
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translate3d(0, 1.75rem, 0);
+    transition:
+      opacity 0.9s var(--ease-out-quart),
+      transform 1.1s var(--ease-out-expo);
+    transition-delay: calc(var(--reveal-delay, 0) * 1ms);
+  }
+
+  .js [data-reveal="fade"] {
+    transform: none;
+  }
+
+  .js [data-reveal="scale"] {
+    transform: translate3d(0, 1rem, 0) scale(0.96);
+  }
+
+  .js [data-reveal][data-revealed] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Animações                                                           */
+/* ------------------------------------------------------------------ */
+
+@property --beam-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes beam-spin {
+  to {
+    --beam-angle: 360deg;
+  }
+}
+
+@keyframes ring-draw {
+  from {
+    stroke-dashoffset: 100;
+  }
+}
+
+/* As entradas começam em opacidade 0.01 (não 0): o texto já é pintado no
+   primeiro frame e o navegador o considera para o LCP desde o início. */
+@keyframes rise {
+  from {
+    opacity: 0.01;
+    transform: translate3d(0, 1.5rem, 0);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes word-up {
+  from {
+    opacity: 0.01;
+    transform: translate3d(0, 0.45em, 0) rotate(3deg);
+    filter: blur(6px);
+  }
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0.01;
+    transform: perspective(1200px) translate3d(0, 3rem, 0) rotateX(14deg) scale(0.94);
+    filter: blur(10px);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  80%,
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+@keyframes scroll-line {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+@keyframes glow-breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translate3d(0, -2%, 0) scale(1.06);
+  }
+}
+
+@keyframes sheen {
+  0% {
+    transform: translateX(-130%) skewX(-18deg);
+  }
+  100% {
+    transform: translateX(230%) skewX(-18deg);
+  }
+}
+
+/* Coreografia de entrada do Hero: CSS puro, roda antes da hidratação. */
+.intro {
+  animation: rise 1s var(--ease-out-expo) both;
+  animation-delay: calc(var(--d, 0) * 1ms);
+}
+
+.intro-fade {
+  animation: fade 1.4s var(--ease-out-quart) both;
+  animation-delay: calc(var(--d, 0) * 1ms);
+}
+
+.intro-word {
+  display: inline-block;
+  animation: word-up 1.1s var(--ease-out-expo) both;
+  animation-delay: calc(var(--d, 0) * 1ms);
+  will-change: transform;
+}
+
+.intro-card {
+  animation: card-in 1.4s var(--ease-out-expo) both;
+  animation-delay: calc(var(--d, 0) * 1ms);
+}
+
+/* Depois da entrada, nada reanima ao trocar de idioma. */
+[data-intro-done] .intro,
+[data-intro-done] .intro-fade,
+[data-intro-done] .intro-word,
+[data-intro-done] .intro-card {
+  animation: none;
+  will-change: auto;
+}
+
+/* ------------------------------------------------------------------ */
+/* Troca de idioma (View Transitions API)                              */
+/* ------------------------------------------------------------------ */
+
+@keyframes locale-out {
+  to {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes locale-in {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(6px);
+  }
+}
+
+html[data-locale-transition]::view-transition-old(root) {
+  animation: locale-out 0.26s var(--ease-out-quart) both;
+}
+
+html[data-locale-transition]::view-transition-new(root) {
+  animation: locale-in 0.5s var(--ease-out-expo) 0.08s both;
+}
+
+/* Durante a transição, a pílula salta para o destino e a View Transition
+   anima o caminho entre as duas posições. */
+html[data-locale-transition] .lang-pill {
+  transition: none;
+}
+
+html[data-locale-transition]::view-transition-group(lang-pill) {
+  animation-duration: 0.55s;
+  animation-timing-function: var(--ease-out-expo);
+}
+
+html[data-locale-transition]::view-transition-old(lang-pill),
+html[data-locale-transition]::view-transition-new(lang-pill) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+html[data-locale-transition]::view-transition-old(lang-pill) {
+  display: none;
+}
+
+/* ------------------------------------------------------------------ */
+/* Movimento reduzido                                                  */
+/* ------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .beam-border::before {
+    animation: none;
+    --beam-angle: 220deg;
+  }
+}
+
+/* Em telas de toque e pequenas, efeitos contínuos ficam parados (economia de bateria e CPU). */
+@media (hover: none), (max-width: 64rem) {
+  .beam-border::before {
+    animation: none;
+    --beam-angle: 220deg;
+  }
+
+  .hero-glow {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Hero                                                                */
+/* ------------------------------------------------------------------ */
+
+@layer components {
+  .hero-grid {
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 72px 72px;
+    background-position: center top;
+    -webkit-mask-image: radial-gradient(ellipse 75% 65% at 62% 38%, #000 15%, transparent 72%);
+    mask-image: radial-gradient(ellipse 75% 65% at 62% 38%, #000 15%, transparent 72%);
+  }
+
+  /* Mesma grade, em azul, revelada só ao redor do cursor. */
+  .hero-grid-lit {
+    background-image:
+      linear-gradient(rgb(96 165 250 / 0.45) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(96 165 250 / 0.45) 1px, transparent 1px);
+    background-size: 72px 72px;
+    background-position: center top;
+    -webkit-mask-image: radial-gradient(220px circle at var(--mx, -999px) var(--my, -999px), #000, transparent 70%);
+    mask-image: radial-gradient(220px circle at var(--mx, -999px) var(--my, -999px), #000, transparent 70%);
+  }
+
+  .hero-glow {
+    background: radial-gradient(closest-side, rgb(37 99 235 / 0.42), rgb(37 99 235 / 0.12) 55%, transparent);
+    animation: glow-breathe 9s ease-in-out infinite;
+  }
+
+  .trace-pulse {
+    fill: none;
+    stroke: var(--color-accent-200);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-dasharray: 70 930;
+    stroke-dashoffset: 1000;
+    animation: trace-flow var(--dur, 6s) linear infinite;
+    animation-delay: var(--delay, 0s);
+  }
+
+  /* Reflexo que atravessa a foto no hover do cartão. */
+  .card-sheen {
+    background: radial-gradient(
+      380px circle at var(--px, 50%) var(--py, 0%),
+      rgb(255 255 255 / 0.16),
+      transparent 45%
+    );
+  }
+}
+
+@keyframes trace-flow {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Rodapé                                                              */
+/* ------------------------------------------------------------------ */
+
+@layer components {
+  .footer-wordmark-lit {
+    background: linear-gradient(100deg, #f8fafc 10%, #93c5fd 45%, #2563eb 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-mask-image: radial-gradient(280px circle at var(--fx, 50%) var(--fy, -999px), #000, transparent 70%);
+    mask-image: radial-gradient(280px circle at var(--fx, 50%) var(--fy, -999px), #000, transparent 70%);
+  }
+
+  @media (hover: none) {
+    .footer-wordmark-lit {
+      opacity: 0.35;
+      -webkit-mask-image: linear-gradient(180deg, #000, transparent 75%);
+      mask-image: linear-gradient(180deg, #000, transparent 75%);
+    }
+  }
+}
+
+/* Logos da seção de tecnologias: cinza até entrarem na tela, depois a cor da marca. */
+@layer components {
+  .logo-reveal {
+    fill: var(--brand);
+  }
+
+  .js .logo-reveal {
+    fill: var(--color-muted);
+    transition: fill 1s var(--ease-out-quart);
+    transition-delay: calc(var(--reveal-delay, 0) * 1ms + 450ms);
+  }
+
+  .js [data-revealed] .logo-reveal {
+    fill: var(--brand);
+  }
+}
