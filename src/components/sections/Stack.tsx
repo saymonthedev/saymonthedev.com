@@ -12,8 +12,8 @@ import { revealDelay } from "@/lib/style";
 
 /** Posição de cada categoria na grade bento (desktop e tablet). */
 const layout: Record<TechCategoryId, { panel: string; tiles: string }> = {
-  frontend: { panel: "md:col-span-2 lg:col-span-4", tiles: "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4" },
-  backend: { panel: "lg:col-span-2", tiles: "grid-cols-2" },
+  frontend: { panel: "md:col-span-2 lg:col-span-3", tiles: "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3" },
+  backend: { panel: "md:col-span-2 lg:col-span-3", tiles: "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3" },
   data: { panel: "lg:col-span-2", tiles: "grid-cols-2" },
   devops: { panel: "lg:col-span-2", tiles: "grid-cols-2" },
   engineering: { panel: "md:col-span-2 lg:col-span-2", tiles: "grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-2" },

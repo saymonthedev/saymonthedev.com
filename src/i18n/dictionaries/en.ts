@@ -23,6 +23,8 @@ export const en: Dictionary = {
       "React",
       "Java",
       "Spring Boot",
+      "Python",
+      "Django",
     ],
   },
 
@@ -222,7 +224,7 @@ export const en: Dictionary = {
       },
       devops: {
         title: "DevOps & infrastructure",
-        note: "Containers, environments and continuous delivery.",
+        note: "Containers, networking, environments and continuous delivery.",
       },
       engineering: {
         title: "Software engineering",
@@ -232,6 +234,7 @@ export const en: Dictionary = {
     items: {
       rest: "REST APIs",
       cicd: "CI/CD",
+      networking: "Networking",
       testing: "Testing",
       cleancode: "Clean Code",
       bestpractices: "Best practices",

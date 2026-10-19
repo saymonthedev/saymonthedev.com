@@ -21,6 +21,8 @@ export const ptBR = {
       "React",
       "Java",
       "Spring Boot",
+      "Python",
+      "Django",
     ],
   },
 
@@ -221,7 +223,7 @@ export const ptBR = {
       },
       devops: {
         title: "DevOps e infraestrutura",
-        note: "Containers, ambientes e entregas contínuas.",
+        note: "Containers, redes, ambientes e entregas contínuas.",
       },
       engineering: {
         title: "Engenharia de software",
@@ -231,6 +233,7 @@ export const ptBR = {
     items: {
       rest: "APIs REST",
       cicd: "CI/CD",
+      networking: "Redes",
       testing: "Testes",
       cleancode: "Clean Code",
       bestpractices: "Boas práticas",
