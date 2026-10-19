@@ -20,7 +20,7 @@ function loadAssets() {
     load("fonts/geist-sans-latin-600-normal.woff"),
     load("fonts/geist-mono-latin-500-normal.woff"),
     load("fonts/instrument-serif-latin-400-italic.woff"),
-    load("images/saymon.png"),
+    load("images/saymon.jpg"),
   ]);
 }
 
@@ -29,7 +29,7 @@ export async function renderOgImage(locale: Locale) {
   const dict = dictionaries[locale];
   const [sans, sansSemibold, mono, serifItalic, photo] = await loadAssets();
 
-  const photoSrc = `data:image/png;base64,${photo.toString("base64")}`;
+  const photoSrc = `data:image/jpeg;base64,${photo.toString("base64")}`;
   const markSrc = `data:image/svg+xml;base64,${Buffer.from(monogramSvg).toString("base64")}`;
 
   return new ImageResponse(
