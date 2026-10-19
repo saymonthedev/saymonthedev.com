@@ -5,6 +5,7 @@ import {
   GraduationCap,
   Languages,
   Layers,
+  Medal,
   Rocket,
   ShieldCheck,
   Sparkles,
@@ -116,7 +117,37 @@ export function About() {
             })}
           </ol>
 
-          <ul data-spotlight-group onPointerMove={onPointerMove} className="mt-14 grid gap-3 sm:grid-cols-2">
+          <article
+            data-reveal
+            className="mt-14 rounded-[1.75rem] border border-amber-300/20 bg-ink-900 bg-[linear-gradient(135deg,rgb(251_191_36/0.09),transparent_50%)] p-5 sm:p-7"
+          >
+            <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
+              <span className="grid size-14 shrink-0 place-items-center rounded-2xl border border-amber-300/30 bg-amber-300/10 text-amber-300 shadow-[0_0_32px_rgb(251_191_36/0.16)]">
+                <Medal aria-hidden="true" className="size-7" strokeWidth={1.5} />
+              </span>
+              <div>
+                <p className="font-mono text-[10.5px] tracking-[0.18em] text-amber-200 uppercase">
+                  {about.award.eyebrow}
+                </p>
+                <h3 className="mt-2 text-lg leading-snug font-semibold tracking-tight sm:text-xl">
+                  {about.award.title}
+                </h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-muted text-pretty">{about.award.text}</p>
+                <ul className="mt-4 flex flex-wrap gap-1.5">
+                  {about.award.tags.map((tag) => (
+                    <li
+                      key={tag}
+                      className="rounded-full border border-amber-300/20 bg-amber-300/[0.06] px-2.5 py-1 text-xs text-amber-100/90"
+                    >
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <ul data-spotlight-group onPointerMove={onPointerMove} className="mt-3 grid gap-3 sm:grid-cols-2">
             {about.traits.map((trait, index) => {
               const Icon = traitIcons[trait.id];
               return (

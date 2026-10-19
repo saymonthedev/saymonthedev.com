@@ -176,6 +176,13 @@ export const ptBR = {
         place: "Sites, sistemas e soluções sob medida para empresas e empreendedores",
       },
     ],
+    award: {
+      eyebrow: "Reconhecimento · 2025",
+      title: "Destaque Quick Kaizen nas Olimpíadas Kaizen da WEG",
+      text: "Fui reconhecido como destaque da Fábrica VIII na categoria Quick Kaizen, com o trabalho “Rota WMR – Fluxo Axial”. A categoria premia melhorias rápidas e práticas, propostas e implantadas por quem vive o processo no dia a dia, dentro do sistema de melhoria contínua da WEG.",
+      tags: ["Quick Kaizen", "Fábrica VIII", "Melhoria contínua"],
+      schema: "Destaque na categoria Quick Kaizen — Olimpíadas Kaizen WEG 2025",
+    },
     traits: [
       {
         id: "proactive",

@@ -177,6 +177,13 @@ export const en: Dictionary = {
         place: "Websites, systems and custom solutions for companies and entrepreneurs",
       },
     ],
+    award: {
+      eyebrow: "Recognition · 2025",
+      title: "Quick Kaizen standout at WEG's Kaizen Olympics",
+      text: "I was recognized as a standout for Factory VIII in the Quick Kaizen category, with the project “Rota WMR – Fluxo Axial”. The category honors fast, practical improvements proposed and implemented by the people who work with the process every day, as part of WEG's continuous improvement system.",
+      tags: ["Quick Kaizen", "Factory VIII", "Continuous improvement"],
+      schema: "Quick Kaizen category standout — WEG Kaizen Olympics 2025",
+    },
     traits: [
       {
         id: "proactive",

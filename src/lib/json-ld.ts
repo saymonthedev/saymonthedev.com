@@ -32,6 +32,7 @@ export function buildJsonLd(locale: Locale) {
         sameAs: [site.github.url, site.linkedin.url],
         knowsAbout,
         knowsLanguage: ["pt-BR", "en"],
+        award: dict.about.award.schema,
         address: { "@type": "PostalAddress", addressCountry: "BR" },
         makesOffer: dict.services.items.map((service) => ({
           "@type": "Offer",
