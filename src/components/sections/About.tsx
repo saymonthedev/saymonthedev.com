@@ -55,13 +55,6 @@ export function About() {
             title={about.title}
             accent={about.titleAccent}
           />
-          <p
-            data-reveal
-            style={revealDelay(200)}
-            className="mt-8 hidden max-w-sm border-l border-(--line-strong) pl-4 text-sm leading-relaxed text-subtle lg:block"
-          >
-            {about.disclaimer}
-          </p>
         </div>
 
         <div>
@@ -167,10 +160,6 @@ export function About() {
               );
             })}
           </ul>
-
-          <p className="mt-8 border-l border-(--line-strong) pl-4 text-sm leading-relaxed text-subtle lg:hidden">
-            {about.disclaimer}
-          </p>
         </div>
       </div>
     </section>

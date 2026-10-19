@@ -206,8 +206,6 @@ export const en: Dictionary = {
         text: "Native Portuguese and intermediate English.",
       },
     ],
-    disclaimer:
-      "Freelance services are provided independently and are not affiliated with WEG.",
   },
 
   stack: {

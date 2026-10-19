@@ -207,8 +207,6 @@ export const ptBR = {
         text: "Português nativo e inglês intermediário.",
       },
     ],
-    disclaimer:
-      "Os serviços freelance são prestados de forma independente, sem vínculo com a WEG.",
   },
 
   stack: {
