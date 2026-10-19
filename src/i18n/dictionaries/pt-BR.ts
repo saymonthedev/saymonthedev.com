@@ -304,8 +304,6 @@ export const ptBR = {
       github: "GitHub",
       linkedin: "LinkedIn",
     },
-    copyEmail: "Copiar e-mail",
-    copied: "E-mail copiado",
     form: {
       title: "Adiante sua ideia",
       description:

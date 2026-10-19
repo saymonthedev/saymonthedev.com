@@ -305,8 +305,6 @@ export const en: Dictionary = {
       github: "GitHub",
       linkedin: "LinkedIn",
     },
-    copyEmail: "Copy email",
-    copied: "Email copied",
     form: {
       title: "Share your idea",
       description:

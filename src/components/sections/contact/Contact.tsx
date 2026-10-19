@@ -1,7 +1,6 @@
 "use client";
 
-import { ArrowUpRight, Check, Copy } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { ArrowUpRight } from "lucide-react";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Magnetic } from "@/components/ui/Magnetic";
@@ -9,54 +8,9 @@ import { Monogram } from "@/components/ui/Monogram";
 import { site } from "@/config/site";
 import type { BrandIconName } from "@/data/brand-icons";
 import { useI18n } from "@/i18n/LocaleProvider";
-import { cn } from "@/lib/cn";
 import { mailtoUrl, whatsappUrl } from "@/lib/links";
 import { keepHyphenated, revealDelay } from "@/lib/style";
 import { ContactComposer } from "./ContactComposer";
-
-function CopyEmailButton() {
-  const { dict } = useI18n();
-  const [copied, setCopied] = useState(false);
-  const timer = useRef(0);
-
-  useEffect(() => () => window.clearTimeout(timer.current), []);
-
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(site.email);
-      setCopied(true);
-      window.clearTimeout(timer.current);
-      timer.current = window.setTimeout(() => setCopied(false), 2200);
-    } catch {
-      window.location.href = mailtoUrl();
-    }
-  };
-
-  return (
-    <button
-      type="button"
-      onClick={copy}
-      aria-label={copied ? dict.contact.copied : dict.contact.copyEmail}
-      title={dict.contact.copyEmail}
-      className="relative grid size-11 shrink-0 place-items-center rounded-xl border border-(--line) bg-white/[0.02] text-muted transition-colors hover:border-(--line-strong) hover:text-fg"
-    >
-      <Copy
-        aria-hidden="true"
-        className={cn("absolute size-4 transition-all duration-300", copied && "scale-50 opacity-0")}
-      />
-      <Check
-        aria-hidden="true"
-        className={cn(
-          "absolute size-4 text-signal transition-all duration-300",
-          copied ? "opacity-100" : "scale-50 opacity-0",
-        )}
-      />
-      <span role="status" className="sr-only">
-        {copied ? dict.contact.copied : ""}
-      </span>
-    </button>
-  );
-}
 
 export function Contact() {
   const { dict } = useI18n();
@@ -165,7 +119,6 @@ export function Contact() {
                       />
                       {channel.external && <span className="sr-only">({dict.a11y.newTab})</span>}
                     </a>
-                    {channel.key === "email" && <CopyEmailButton />}
                   </li>
                 ))}
               </ul>
