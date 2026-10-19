@@ -417,12 +417,6 @@
   }
 }
 
-@keyframes ring-draw {
-  from {
-    stroke-dashoffset: 100;
-  }
-}
-
 /* As entradas começam em opacidade 0.01 (não 0): o texto já é pintado no
    primeiro frame e o navegador o considera para o LCP desde o início. */
 @keyframes rise {
