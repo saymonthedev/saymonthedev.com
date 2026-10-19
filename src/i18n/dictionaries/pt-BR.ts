@@ -1,14 +1,16 @@
 export const ptBR = {
   meta: {
-    title: "Saymon Oliveira de Castro — Desenvolvedor Full Stack",
+    title: "Saymon Oliveira de Castro · Desenvolvedor Full Stack Freelancer",
     description:
-      "Desenvolvedor Full Stack. Crio sites, sistemas web, APIs, dashboards, automações e soluções com inteligência artificial para empresas e empreendedores.",
+      "Desenvolvedor Full Stack freelancer em Jaraguá do Sul (SC). Criação de sites, sistemas web, APIs, dashboards, automações e soluções com IA para empresas.",
     ogAlt: "Saymon Oliveira de Castro, desenvolvedor Full Stack",
     /** Linha de serviços na imagem de compartilhamento. */
     ogTags: ["Sites", "Sistemas web", "APIs", "Dashboards", "Automações", "IA"],
     keywords: [
       "desenvolvedor full stack",
       "desenvolvedor freelancer",
+      "desenvolvedor Jaraguá do Sul",
+      "desenvolvedor de sistemas",
       "criação de sites",
       "landing page",
       "sistemas web",
@@ -69,7 +71,7 @@ export const ptBR = {
     availability: "Disponível para projetos freelance",
     headline: "Transformo ideias em",
     headlineAccent: "soluções digitais.",
-    lead: "Sou Saymon Oliveira de Castro, desenvolvedor Full Stack. Crio aplicações modernas, sistemas inteligentes e experiências digitais que unem performance, design e engenharia de software.",
+    lead: "Sou Saymon Oliveira de Castro, desenvolvedor Full Stack freelancer em Jaraguá do Sul (SC). Crio aplicações modernas, sistemas inteligentes e experiências digitais que unem performance, design e engenharia de software.",
     primaryCta: "Vamos criar seu projeto",
     secondaryCta: "Conheça meu trabalho",
     note: "Conversa direta comigo, sem intermediários.",
@@ -84,7 +86,7 @@ export const ptBR = {
       },
       timeLabel: "Horário de Brasília",
       roleValue: "Full Stack",
-      baseValue: "Brasil",
+      baseValue: "Jaraguá do Sul, SC",
       statusValue: "Aberto a projetos",
       languagesValue: "PT · EN",
     },
@@ -100,7 +102,7 @@ export const ptBR = {
     items: [
       {
         id: "sites",
-        title: "Sites e Landing Pages",
+        title: "Criação de Sites e Landing Pages",
         description:
           "Páginas modernas, rápidas e responsivas, feitas para apresentar sua marca com clareza e transformar visitantes em novas oportunidades.",
         tags: ["Apresentar sua empresa", "Lançar um produto", "Captar contatos"],

@@ -1,7 +1,7 @@
 // Gera as variantes responsivas das imagens depois do `next build`.
 // Para cada imagem em out/_next/static/media cria <nome>.w<largura>.webp em
 // todas as larguras de image-sizes.json (sem ampliar além do original).
-import { readdir, stat } from "node:fs/promises";
+import { readdir, stat, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
@@ -38,3 +38,14 @@ for (const file of files) {
 }
 
 console.log(`optimize-images: ${created} variantes geradas para ${files.length} imagens.`);
+
+// Imagens de compartilhamento: recompressão sem perda (o WhatsApp ignora
+// prévias acima de ~300 KB).
+for (const path of ["out/og.png", "out/en/og.png"]) {
+  const file = join(root, path);
+  const before = await stat(file).catch(() => null);
+  if (!before) continue;
+  const output = await sharp(file).png({ compressionLevel: 9, adaptiveFiltering: true, effort: 10 }).toBuffer();
+  if (output.length < before.size) await writeFile(file, output);
+  console.log(`optimize-images: ${path} ${Math.round(before.size / 1024)} KB -> ${Math.round(Math.min(output.length, before.size) / 1024)} KB`);
+}

@@ -1,9 +1,12 @@
 {
   // Publicação na Cloudflare (Workers com assets estáticos).
-  // `npm run build` gera a pasta out/; `npx wrangler deploy` envia para o ar.
+  // `npm run build` gera a pasta out/; `npm run deploy` envia para o ar.
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "saymon-portfolio",
   "compatibility_date": "2026-10-01",
+  // Só os domínios próprios: sem cópia do site em *.workers.dev.
+  "workers_dev": false,
+  "preview_urls": false,
   "assets": {
     "directory": "./out",
     // /en e /en/ apontam para o mesmo arquivo (en.html)

@@ -6,7 +6,6 @@ import { fontVariables } from "@/config/fonts";
 
 export const metadata: Metadata = {
   title: "404 — Página não encontrada · Page not found",
-  robots: { index: false },
 };
 
 export default function GlobalNotFound() {

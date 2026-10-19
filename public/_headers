@@ -1,10 +1,23 @@
 # Cabeçalhos servidos pela Cloudflare (Workers Static Assets).
+# Valem para todas as respostas, inclusive 404 e redirecionamentos.
+# A CSP aceita scripts inline porque o export estático do Next depende deles
+# (nonce exige renderização dinâmica). Não repita a CSP em outra regra: a
+# Cloudflare juntaria as duas e o navegador aplicaria a interseção.
 /*
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
-  X-Frame-Options: DENY
+  Content-Security-Policy: default-src 'none'; script-src 'self' 'unsafe-inline'; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; style-src-elem 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+  Cross-Origin-Opener-Policy: same-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), browsing-topics=()
+  Referrer-Policy: strict-origin-when-cross-origin
   Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+
+# Payloads RSC (.txt) do Next: dados internos da navegação, fora da busca.
+/*.txt
+  X-Robots-Tag: noindex
+
+/robots.txt
+  ! X-Robots-Tag
 
 # Arquivos com hash no nome nunca mudam: cache de 1 ano.
 /_next/static/*

@@ -28,7 +28,12 @@ const localeFromPath = (pathname: string): Locale =>
 
 /** Converte a âncora atual para o ID equivalente no outro idioma. */
 function translateHash(hash: string, from: Locale, to: Locale) {
-  const id = decodeURIComponent(hash.replace(/^#/, ""));
+  let id: string;
+  try {
+    id = decodeURIComponent(hash.replace(/^#/, ""));
+  } catch {
+    return "";
+  }
   if (!id) return "";
   const source = dictionaries[from].sections;
   const key = (Object.keys(source) as SectionKey[]).find((k) => source[k] === id);
@@ -54,8 +59,9 @@ export function LocaleProvider({
     (next: Locale) => {
       if (next === locale) return;
 
-      document.cookie = `${LOCALE_COOKIE}=${next}; path=/; max-age=31536000; samesite=lax`;
       const url = localePaths[next] + translateHash(window.location.hash, locale, next);
+      const secure = window.location.protocol === "https:" ? "; secure" : "";
+      document.cookie = `${LOCALE_COOKIE}=${next}; path=/; max-age=31536000; samesite=lax${secure}`;
 
       const commit = () => {
         flushSync(() => setLocaleState(next));

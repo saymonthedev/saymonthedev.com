@@ -2,9 +2,9 @@ import type { Dictionary } from "./pt-BR";
 
 export const en: Dictionary = {
   meta: {
-    title: "Saymon Oliveira de Castro — Full Stack Developer",
+    title: "Saymon Oliveira de Castro · Freelance Full Stack Developer",
     description:
-      "Full Stack developer building websites, web apps, APIs, dashboards, automations and AI-powered solutions for companies and entrepreneurs.",
+      "Freelance Full Stack developer based in Jaraguá do Sul, Brazil. I build websites, web apps, APIs, dashboards, automations and AI-powered solutions.",
     ogAlt: "Saymon Oliveira de Castro, Full Stack developer",
     /** Linha de serviços na imagem de compartilhamento. */
     ogTags: ["Websites", "Web apps", "APIs", "Dashboards", "Automations", "AI"],
@@ -70,7 +70,7 @@ export const en: Dictionary = {
     availability: "Available for freelance projects",
     headline: "I turn ideas into",
     headlineAccent: "digital solutions.",
-    lead: "I'm Saymon Oliveira de Castro, a Full Stack developer. I build modern applications, smart systems and digital experiences that bring together performance, design and software engineering.",
+    lead: "I'm Saymon Oliveira de Castro, a freelance Full Stack developer based in Jaraguá do Sul, Brazil. I build modern applications, smart systems and digital experiences that bring together performance, design and software engineering.",
     primaryCta: "Let's build your project",
     secondaryCta: "See my work",
     note: "You talk directly to me, no middlemen.",
@@ -85,7 +85,7 @@ export const en: Dictionary = {
       },
       timeLabel: "Brasília time",
       roleValue: "Full Stack",
-      baseValue: "Brazil",
+      baseValue: "Jaraguá do Sul, BR",
       statusValue: "Open to projects",
       languagesValue: "PT · EN",
     },

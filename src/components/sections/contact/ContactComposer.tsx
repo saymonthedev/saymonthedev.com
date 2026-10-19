@@ -41,8 +41,8 @@ export function ContactComposer() {
 
   const compose = () => {
     const { template } = form;
-    const lines = [template.greeting.replace("{name}", name.trim()), template.intro];
-    if (type !== null) lines.push(template.type.replace("{type}", form.types[type]));
+    const lines = [template.greeting.replace("{name}", () => name.trim()), template.intro];
+    if (type !== null) lines.push(template.type.replace("{type}", () => form.types[type]));
     lines.push("", message.trim());
     return lines.join("\n");
   };
@@ -53,7 +53,7 @@ export function ContactComposer() {
     if (channel === "whatsapp") {
       window.open(whatsappUrl(text), "_blank", "noopener,noreferrer");
     } else {
-      window.location.href = mailtoUrl(form.template.subject.replace("{name}", name.trim()), text);
+      window.location.href = mailtoUrl(form.template.subject.replace("{name}", () => name.trim()), text);
     }
     setSentVia(channel);
   };
@@ -86,7 +86,6 @@ export function ContactComposer() {
           <input
             ref={nameRef}
             id={`${id}-name`}
-            name="name"
             type="text"
             autoComplete="name"
             maxLength={80}
@@ -148,7 +147,6 @@ export function ContactComposer() {
           <textarea
             ref={messageRef}
             id={`${id}-message`}
-            name="message"
             rows={4}
             maxLength={1200}
             value={message}
