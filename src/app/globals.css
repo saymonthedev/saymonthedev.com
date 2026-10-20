@@ -411,6 +411,12 @@
   inherits: false;
 }
 
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
+
 @keyframes beam-spin {
   to {
     --beam-angle: 360deg;
