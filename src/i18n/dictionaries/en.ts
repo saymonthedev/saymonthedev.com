@@ -154,7 +154,7 @@ export const en: Dictionary = {
     titleAccent: "care to build things right.",
     paragraphs: [
       "I'm a Full Stack developer, and I enjoy watching an idea become something that truly works. I'm drawn to complex problems and to the details that set a well-built solution apart from an ordinary one: clean code, tests, architecture and a good experience for the people using it.",
-      "I studied Systems Development through the CentroWEG program, in partnership with SENAI in Jaraguá do Sul, from 2023 to 2025. Today I work at WEG Drives & Controls, in the quality department of WEG Automação, where I'm the only developer in my section.",
+      "I studied Systems Development through the CentroWEG program, in partnership with SENAI in Jaraguá do Sul, from 2023 to 2025, and I am now studying Software Engineering at Católica SC. Professionally, I work at WEG Drives & Controls, in the quality department of WEG Automação, where I'm the only developer in my section.",
       "That responsibility calls for real autonomy: understanding each need, proposing a path forward and owning the solution. My day-to-day experience spans frontend, backend, process automation, systems integration and infrastructure.",
       "I bring the same approach to freelance work: clear communication, initiative and a commitment to quality in every delivery.",
     ],
@@ -164,6 +164,11 @@ export const en: Dictionary = {
         period: "2023 — 2025",
         title: "Systems Development program",
         place: "CentroWEG in partnership with SENAI · Jaraguá do Sul",
+      },
+      {
+        period: "In progress",
+        title: "Software Engineering degree",
+        place: "Católica SC",
       },
       {
         period: "Currently",

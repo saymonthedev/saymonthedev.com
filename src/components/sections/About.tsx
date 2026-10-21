@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  BookOpen,
   Briefcase,
   GraduationCap,
   Languages,
@@ -23,7 +24,7 @@ const traitIcons: Record<string, LucideIcon> = {
   languages: Languages,
 };
 
-const timelineIcons: LucideIcon[] = [GraduationCap, Briefcase, Sparkles];
+const timelineIcons: LucideIcon[] = [GraduationCap, BookOpen, Briefcase, Sparkles];
 
 export function About() {
   const { dict } = useI18n();

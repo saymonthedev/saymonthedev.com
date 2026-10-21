@@ -155,7 +155,7 @@ export const ptBR = {
     titleAccent: "cuidado para construir bem.",
     paragraphs: [
       "Sou desenvolvedor Full Stack e gosto de ver uma ideia virar algo que funciona de verdade. Me interesso por problemas complexos e pelos detalhes que separam uma solução comum de uma solução bem construída: código limpo, testes, arquitetura e uma boa experiência para quem usa.",
-      "Me formei em Desenvolvimento de Sistemas pelo programa CentroWEG, em parceria com o SENAI de Jaraguá do Sul, entre 2023 e 2025. Hoje trabalho na WEG Drives & Controls, na área de qualidade da WEG Automação, onde sou o único desenvolvedor da minha seção.",
+      "Me formei em Desenvolvimento de Sistemas pelo programa CentroWEG, em parceria com o SENAI de Jaraguá do Sul, entre 2023 e 2025, e hoje curso Engenharia de Software na Católica SC. Profissionalmente, trabalho na WEG Drives & Controls, na área de qualidade da WEG Automação, onde sou o único desenvolvedor da minha seção.",
       "Essa responsabilidade exige autonomia: entender cada necessidade, propor caminhos e responder pela solução. No dia a dia, minha experiência passa por frontend, backend, automação de processos, integração de sistemas e infraestrutura.",
       "Nos projetos freelance, levo a mesma postura: comunicação clara, proatividade e compromisso com a qualidade de cada entrega.",
     ],
@@ -165,6 +165,11 @@ export const ptBR = {
         period: "2023 — 2025",
         title: "Formação em Desenvolvimento de Sistemas",
         place: "CentroWEG em parceria com o SENAI · Jaraguá do Sul",
+      },
+      {
+        period: "Em andamento",
+        title: "Graduação em Engenharia de Software",
+        place: "Católica SC",
       },
       {
         period: "Atualmente",
