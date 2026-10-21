@@ -166,7 +166,7 @@ export const en: Dictionary = {
         place: "CentroWEG in partnership with SENAI · Jaraguá do Sul",
       },
       {
-        period: "In progress",
+        period: "2025 — 2029",
         title: "Software Engineering degree",
         place: "Católica SC",
       },

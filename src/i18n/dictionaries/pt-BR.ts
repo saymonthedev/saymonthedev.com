@@ -167,7 +167,7 @@ export const ptBR = {
         place: "CentroWEG em parceria com o SENAI · Jaraguá do Sul",
       },
       {
-        period: "Em andamento",
+        period: "2025 — 2029",
         title: "Graduação em Engenharia de Software",
         place: "Católica SC",
       },
