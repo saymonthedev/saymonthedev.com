@@ -122,7 +122,8 @@ export function Projects() {
               key={project.slug}
               className={cn(projects.length > 1 && index === 0 && projects.length % 2 === 1 && "lg:col-span-2")}
             >
-              <ProjectCard project={project} featured={projects.length === 1 || index === 0} />
+              {/* Layout de destaque só quando o cartão ocupa a linha inteira. */}
+              <ProjectCard project={project} featured={projects.length === 1 || (index === 0 && projects.length % 2 === 1)} />
             </div>
           ))}
 

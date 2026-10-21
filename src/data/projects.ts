@@ -1,6 +1,8 @@
 import type { StaticImageData } from "next/image";
 import type { Localized } from "@/i18n/config";
 import type { BrandIconName } from "./brand-icons";
+import cobreDesktop from "@/assets/projects/barbearia-cobre-desktop.webp";
+import cobreMobile from "@/assets/projects/barbearia-cobre-mobile.webp";
 import litoralDesktop from "@/assets/projects/litoral-bordados-desktop.webp";
 import litoralMobile from "@/assets/projects/litoral-bordados-mobile.webp";
 
@@ -34,6 +36,51 @@ export type Project = {
  * quantidade de projetos publicados.
  */
 export const projects: Project[] = [
+  {
+    slug: "barbearia-cobre",
+    title: "Barbearia Cobre",
+    published: true,
+    year: "2026",
+    kind: {
+      "pt-BR": "Projeto conceitual · Landing page e agendamento",
+      en: "Concept project · Landing page and booking",
+    },
+    description: {
+      "pt-BR":
+        "Site e landing page para uma barbearia fictícia, com agendamento online em uma comanda de papel: o cliente escolhe serviço, profissional, dia e horário, e a confirmação sai pronta para o WhatsApp.",
+      en: "Website and landing page for a fictional barbershop, with online booking on a paper ticket: customers pick a service, a barber, a day and a time, and the confirmation is ready to send on WhatsApp.",
+    },
+    highlights: {
+      "pt-BR": [
+        "Cada seção é um objeto da barbearia: espelho, letreiro de feltro, comanda, cartas e placa",
+        "Calendário, horários e formulários feitos do zero, sem componentes padrão do navegador",
+        "Próximo horário livre calculado na hora, com reserva em um toque",
+        "Acessibilidade 100 no Lighthouse e publicação contínua na Vercel",
+      ],
+      en: [
+        "Every section is an object from the shop: mirror, felt letter board, ticket, cards and sign",
+        "Calendar, time slots and forms built from scratch, with no default browser widgets",
+        "Next available slot computed live, bookable in one tap",
+        "100 accessibility score on Lighthouse and continuous deployment on Vercel",
+      ],
+    },
+    stack: [
+      { name: "Next.js", logo: "nextjs" },
+      { name: "React", logo: "react" },
+      { name: "TypeScript", logo: "typescript" },
+      { name: "Tailwind CSS", logo: "tailwind" },
+    ],
+    images: {
+      desktop: cobreDesktop,
+      mobile: cobreMobile,
+      alt: {
+        "pt-BR": "Captura de tela do site da Barbearia Cobre, projeto conceitual",
+        en: "Screenshot of the Barbearia Cobre concept website",
+      },
+    },
+    repoUrl: "https://github.com/saymonthedev/barbearia-cobre",
+    liveUrl: "https://barbearia-cobre.vercel.app",
+  },
   {
     slug: "litoral-bordados",
     title: "Litoral Bordados",
