@@ -54,7 +54,7 @@ export function Contact() {
             <Monogram framed={false} className="absolute -right-24 -bottom-24 size-[26rem] opacity-[0.04]" />
           </div>
 
-          <div className="relative grid gap-12 px-5 py-12 sm:px-10 sm:py-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-14 lg:px-14 lg:py-20">
+          <div className="relative grid grid-cols-[minmax(0,1fr)] gap-12 px-4 py-12 xs:px-5 sm:px-10 sm:py-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-14 lg:px-14 lg:py-20">
             <div>
               <p className="eyebrow">{contact.eyebrow}</p>
               <h2
@@ -75,11 +75,12 @@ export function Contact() {
               </p>
 
               <div data-reveal style={revealDelay(220)} className="mt-9">
-                <Magnetic>
+                <Magnetic className="max-w-full">
                   <ButtonLink
                     href={whatsappUrl(dict.whatsappMessage)}
                     external
                     size="lg"
+                    className="max-w-full px-6 text-center whitespace-normal sm:px-7 sm:whitespace-nowrap"
                     leading={<BrandLogo name="whatsapp" tone="mono" className="size-5" />}
                     icon={ArrowUpRight}
                     iconMotion="diag"
@@ -89,7 +90,7 @@ export function Contact() {
                 </Magnetic>
               </div>
 
-              <ul className="mt-10 grid gap-2.5">
+              <ul className="mt-10 grid grid-cols-[minmax(0,1fr)] gap-2.5">
                 {channels.map((channel, index) => (
                   <li
                     key={channel.key}
@@ -100,7 +101,7 @@ export function Contact() {
                     <a
                       href={channel.href}
                       {...(channel.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                      className="group flex min-w-0 flex-1 items-center gap-4 rounded-2xl border border-(--line) bg-ink-950/40 px-4 py-3 transition-[border-color,background-color] duration-300 hover:border-(--line-strong) hover:bg-white/[0.035]"
+                      className="group flex min-w-0 flex-1 items-center gap-3 rounded-2xl border border-(--line) bg-ink-950/40 px-3 py-3 xs:gap-4 xs:px-4 transition-[border-color,background-color] duration-300 hover:border-(--line-strong) hover:bg-white/[0.035]"
                     >
                       <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-white/[0.04] transition-transform duration-500 ease-out-expo group-hover:scale-105">
                         <BrandLogo name={channel.logo} className="size-5" />
@@ -109,7 +110,7 @@ export function Contact() {
                         <span className="block font-mono text-[10.5px] tracking-[0.16em] text-subtle uppercase">
                           {contact.channels[channel.key]}
                         </span>
-                        <span className="mt-0.5 block truncate text-[15px] text-soft transition-colors group-hover:text-fg">
+                        <span className="mt-0.5 block truncate text-sm text-soft xs:text-[15px] transition-colors group-hover:text-fg">
                           {channel.value}
                         </span>
                       </span>

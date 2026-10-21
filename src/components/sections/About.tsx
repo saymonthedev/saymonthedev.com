@@ -48,7 +48,7 @@ export function About() {
         className="pointer-events-none absolute top-1/4 left-[-18rem] -z-10 size-[42rem] rounded-full bg-[radial-gradient(closest-side,rgb(37_99_235/0.12),transparent)]"
       />
 
-      <div className="container-page grid gap-14 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20">
+      <div className="container-page grid grid-cols-[minmax(0,1fr)] gap-14 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20">
         <div className="lg:sticky lg:top-[calc(var(--header-h)+3rem)] lg:self-start">
           <SectionHeading
             id="about-title"
