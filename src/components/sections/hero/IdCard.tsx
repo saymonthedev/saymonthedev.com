@@ -3,7 +3,7 @@
 import { m, useReducedMotion, useSpring } from "motion/react";
 import Image from "next/image";
 import { useRef, type PointerEvent } from "react";
-import photo from "@/assets/images/saymon.jpg";
+import photo from "@/assets/images/saymon.png";
 import { LocalTime } from "@/components/ui/LocalTime";
 import { Monogram } from "@/components/ui/Monogram";
 import { site } from "@/config/site";
@@ -91,7 +91,7 @@ export function IdCard() {
           />
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-t from-ink-950/90 via-ink-950/20 via-30% to-transparent to-60%"
+            className="absolute inset-0 bg-gradient-to-t from-ink-950/75 via-ink-950/5 to-transparent"
           />
           <div
             aria-hidden="true"

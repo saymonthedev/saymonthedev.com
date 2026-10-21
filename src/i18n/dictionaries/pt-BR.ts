@@ -77,7 +77,7 @@ export const ptBR = {
     note: "Conversa direta comigo, sem intermediários.",
     scroll: "Role para explorar",
     card: {
-      photoAlt: "Foto de Saymon Oliveira de Castro",
+      photoAlt: "Foto de Saymon Oliveira de Castro sorrindo, ao ar livre",
       rows: {
         role: "Função",
         base: "Base",

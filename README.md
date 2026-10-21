@@ -72,7 +72,7 @@ As rotas de [`wrangler.jsonc`](wrangler.jsonc) ligam `saymonthedev.com` e `www.s
 | Projetos | `src/data/projects.ts` (+ capturas em `src/assets/projects/`) |
 | Tecnologias | `src/data/technologies.ts` (logos em `src/data/brand-icons.ts`) |
 | Ícones dos serviços | `src/data/services.ts` |
-| Foto | `src/assets/images/saymon.jpg` |
+| Foto | `src/assets/images/saymon.png` |
 | Cores, fontes e animações | `src/app/globals.css` e `src/config/fonts.ts` |
 
 O dicionário em inglês tem o mesmo tipo do português: se um texto faltar em um dos idiomas, o TypeScript acusa no build.
@@ -87,7 +87,7 @@ O layout se adapta à quantidade de projetos: com um número ímpar, um cartão 
 
 ### Trocar a foto
 
-Substitua `src/assets/images/saymon.jpg` mantendo o nome. Use uma imagem quadrada de pelo menos **800 × 800 px**, sem metadados de localização (o recorte atual tem 1000 × 1000 px).
+Substitua `src/assets/images/saymon.png` mantendo o nome. Use uma imagem quadrada de pelo menos **800 × 800 px**, sem metadados de localização (a foto atual tem 300 × 300 px).
 
 ## Como funciona
 

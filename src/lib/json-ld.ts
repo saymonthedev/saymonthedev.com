@@ -1,4 +1,4 @@
-import photo from "@/assets/images/saymon.jpg";
+import photo from "@/assets/images/saymon.png";
 import { site } from "@/config/site";
 import { localePaths, locales, type Locale } from "@/i18n/config";
 import { dictionaries } from "@/i18n/dictionaries";
