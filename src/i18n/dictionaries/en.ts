@@ -76,7 +76,7 @@ export const en: Dictionary = {
     note: "You talk directly to me, no middlemen.",
     scroll: "Scroll to explore",
     card: {
-      photoAlt: "Photo of Saymon Oliveira de Castro smiling outdoors",
+      photoAlt: "Photo of Saymon Oliveira de Castro in a suit and blue tie",
       rows: {
         role: "Role",
         base: "Based in",
