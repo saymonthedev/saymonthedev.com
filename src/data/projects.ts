@@ -2,6 +2,8 @@ import type { StaticImageData } from "next/image";
 import type { Localized } from "@/i18n/config";
 import type { BrandIconName } from "./brand-icons";
 import cobreDesktop from "@/assets/projects/barbearia-cobre-desktop.webp";
+import crostaDesktop from "@/assets/projects/crosta-desktop.webp";
+import crostaMobile from "@/assets/projects/crosta-mobile.webp";
 import cobreMobile from "@/assets/projects/barbearia-cobre-mobile.webp";
 import litoralDesktop from "@/assets/projects/litoral-bordados-desktop.webp";
 import litoralMobile from "@/assets/projects/litoral-bordados-mobile.webp";
@@ -36,6 +38,51 @@ export type Project = {
  * quantidade de projetos publicados.
  */
 export const projects: Project[] = [
+  {
+    slug: "crosta",
+    title: "Crosta",
+    published: true,
+    year: "2026",
+    kind: {
+      "pt-BR": "Projeto conceitual · Cardápio e pedido online",
+      en: "Concept project · Online menu and ordering",
+    },
+    description: {
+      "pt-BR":
+        "Cardápio e pedido online para uma hamburgueria fictícia de smash burger: o cliente monta o burger camada por camada, acompanha tudo numa comanda de papel térmico e fecha o pedido pelo WhatsApp, para entrega ou retirada.",
+      en: "Online menu and ordering for a fictional smash burger joint: customers build their burger layer by layer, follow everything on a thermal-paper ticket and send the order on WhatsApp, for delivery or pickup.",
+    },
+    highlights: {
+      "pt-BR": [
+        "Ficha técnica em SVG que desenha cada camada escolhida, com legenda e preço",
+        "Comanda que imprime os itens por estação da cozinha, com o checkout dentro do papel",
+        "Horário real de Brasília, agendamento, taxa por bairro, campanha e cupom com regras de verdade",
+        "68 testes de fluxo no navegador e Lighthouse 99 no desktop",
+      ],
+      en: [
+        "SVG spec sheet that draws every chosen layer, with labels and prices",
+        "A ticket that prints items by kitchen station, with checkout right on the paper",
+        "Real São Paulo opening hours, scheduling, delivery fees by area, a campaign and a coupon with real rules",
+        "68 end-to-end browser tests and a 99 desktop Lighthouse score",
+      ],
+    },
+    stack: [
+      { name: "Next.js", logo: "nextjs" },
+      { name: "React", logo: "react" },
+      { name: "TypeScript", logo: "typescript" },
+      { name: "Tailwind CSS", logo: "tailwind" },
+    ],
+    images: {
+      desktop: crostaDesktop,
+      mobile: crostaMobile,
+      alt: {
+        "pt-BR": "Captura de tela do site da Crosta, projeto conceitual de hamburgueria",
+        en: "Screenshot of the Crosta burger joint concept website",
+      },
+    },
+    repoUrl: "https://github.com/saymonthedev/crosta",
+    liveUrl: "https://crosta-smash.vercel.app",
+  },
   {
     slug: "barbearia-cobre",
     title: "Barbearia Cobre",
