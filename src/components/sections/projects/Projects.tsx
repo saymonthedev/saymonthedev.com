@@ -20,8 +20,9 @@ function ProjectCard({ project, featured }: { project: Project; featured: boolea
     <article
       data-reveal
       className={cn(
-        "spotlight surface grid gap-8 rounded-[2rem] p-3 sm:p-4",
-        featured && "lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-10",
+        "spotlight surface grid h-full gap-8 rounded-[2rem] p-3 sm:p-4",
+        // Lado a lado, o texto ocupa a sobra de altura e os botões se alinham na base.
+        featured ? "lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-10" : "grid-rows-[auto_1fr]",
       )}
     >
       <ProjectPreview project={project} />

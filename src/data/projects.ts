@@ -171,9 +171,7 @@ export const projects: Project[] = [
       },
     },
     repoUrl: "https://github.com/saymonthedev/litoral-bordados",
-    // O README do projeto aponta https://litoralbordados.com, mas o endereço
-    // não respondeu na verificação. Descomente quando estiver no ar:
-    // liveUrl: "https://litoralbordados.com",
+    liveUrl: "https://litoralbordados.com",
   },
 ];
 

@@ -2,7 +2,14 @@
 
 import { useEffect } from "react";
 
-/** Um único IntersectionObserver para todos os elementos com `data-reveal`. */
+const SELECTOR = "[data-reveal]:not([data-revealed])";
+
+/**
+ * Um único IntersectionObserver para todos os elementos com `data-reveal`.
+ * Um MutationObserver registra os que entram depois da montagem: na troca de
+ * idioma o React recria itens cuja `key` é um texto traduzido, e sem isso eles
+ * ficariam invisíveis para sempre.
+ */
 export function RevealObserver() {
   useEffect(() => {
     const root = document.documentElement;
@@ -19,11 +26,26 @@ export function RevealObserver() {
       { rootMargin: "0px 0px -8% 0px" },
     );
 
-    document
-      .querySelectorAll<HTMLElement>("[data-reveal]:not([data-revealed])")
-      .forEach((el) => observer.observe(el));
+    const observeWithin = (node: ParentNode) => {
+      if (node instanceof HTMLElement && node.matches(SELECTOR)) observer.observe(node);
+      node.querySelectorAll<HTMLElement>(SELECTOR).forEach((el) => observer.observe(el));
+    };
 
-    return () => observer.disconnect();
+    observeWithin(document);
+
+    const mutations = new MutationObserver((records) => {
+      for (const record of records) {
+        record.addedNodes.forEach((node) => {
+          if (node instanceof HTMLElement) observeWithin(node);
+        });
+      }
+    });
+    mutations.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      mutations.disconnect();
+      observer.disconnect();
+    };
   }, []);
 
   return null;
