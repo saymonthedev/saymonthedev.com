@@ -171,14 +171,15 @@ export function ContactComposer() {
         </div>
       </div>
 
-      <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-        <button type="submit" className="btn btn-primary flex-1">
+      {/* Lado a lado só quando os dois cabem inteiros; senão, um embaixo do outro. */}
+      <div className="mt-7 flex flex-wrap gap-3">
+        <button type="submit" className="btn btn-primary flex-auto">
           <BrandLogo name="whatsapp" tone="mono" className="size-4" />
           {form.sendWhatsapp}
-          <Send aria-hidden="true" className="btn-icon btn-icon-diag size-4" />
+          <Send aria-hidden="true" className="btn-icon btn-icon-diag hidden size-4 shrink-0 min-[360px]:block" />
         </button>
-        <button type="button" onClick={() => send("email")} className="btn btn-ghost flex-1">
-          <Mail aria-hidden="true" className="size-4" />
+        <button type="button" onClick={() => send("email")} className="btn btn-ghost flex-auto">
+          <Mail aria-hidden="true" className="size-4 shrink-0" />
           {form.sendEmail}
         </button>
       </div>
