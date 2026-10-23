@@ -7,6 +7,8 @@ import crostaMobile from "@/assets/projects/crosta-mobile.webp";
 import cobreMobile from "@/assets/projects/barbearia-cobre-mobile.webp";
 import litoralDesktop from "@/assets/projects/litoral-bordados-desktop.webp";
 import litoralMobile from "@/assets/projects/litoral-bordados-mobile.webp";
+import stainhausDesktop from "@/assets/projects/stainhaus-desktop.webp";
+import stainhausMobile from "@/assets/projects/stainhaus-mobile.webp";
 
 export type Project = {
   slug: string;
@@ -38,6 +40,52 @@ export type Project = {
  * quantidade de projetos publicados.
  */
 export const projects: Project[] = [
+  {
+    slug: "stainhaus",
+    title: "Stainhaus",
+    published: true,
+    year: "2026",
+    kind: {
+      "pt-BR": "Cliente · Sistema de gestão",
+      en: "Client project · Management system",
+    },
+    description: {
+      "pt-BR":
+        "Sistema de gestão feito sob medida para a Stainhaus Marmoraria, de Jaraguá do Sul (SC): projetos da medição à instalação, clientes, tarefas, agenda de medições e entregas, equipe com permissões e o histórico de cada obra.",
+      en: "Custom management system for Stainhaus Marmoraria, a stone shop in Jaraguá do Sul, Brazil: projects from measuring to installation, customers, tasks, a schedule of site visits and deliveries, a team with permissions and the history of every job.",
+    },
+    highlights: {
+      "pt-BR": [
+        "Fluxo de etapas da produção real: orçamento, medição, corte, acabamento e instalação",
+        "Permissões por colaborador, conferidas no servidor em cada ação",
+        "Agenda por dia, semana e mês, ligada aos projetos, e histórico completo de cada obra",
+        "Modo demonstração público com dados fictícios, que volta ao estado inicial todo dia",
+      ],
+      en: [
+        "Stages that follow real production: quote, measuring, cutting, finishing and installation",
+        "Per-employee permissions, checked on the server for every action",
+        "Day, week and month schedule tied to projects, plus a full history of every job",
+        "Public demo mode with fictional data that resets every day",
+      ],
+    },
+    stack: [
+      { name: "Next.js", logo: "nextjs" },
+      { name: "TypeScript", logo: "typescript" },
+      { name: "PostgreSQL", logo: "postgresql" },
+      { name: "Prisma", logo: "prisma" },
+      { name: "Tailwind CSS", logo: "tailwind" },
+    ],
+    images: {
+      desktop: stainhausDesktop,
+      mobile: stainhausMobile,
+      alt: {
+        "pt-BR": "Telas do sistema de gestão da Stainhaus Marmoraria, com dados fictícios",
+        en: "Screens from the Stainhaus Marmoraria management system, with fictional data",
+      },
+    },
+    repoUrl: "https://github.com/saymonthedev/agenda-marmoraria",
+    liveUrl: "https://agenda-marmoraria-stainhaus.vercel.app",
+  },
   {
     slug: "crosta",
     title: "Crosta",
