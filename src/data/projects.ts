@@ -182,13 +182,13 @@ export const projects: Project[] = [
     published: true,
     year: "2026",
     kind: {
-      "pt-BR": "Cliente · Site institucional",
-      en: "Client project · Company website",
+      "pt-BR": "Cliente · Landing page",
+      en: "Client project · Landing page",
     },
     description: {
       "pt-BR":
-        "Site institucional feito para a Litoral Bordados, empresa de bordados personalizados, com identidade visual própria e uma animação autoral no topo da página: uma agulha borda, ponto a ponto, o mesmo desenho da marca.",
-      en: "Company website built for Litoral Bordados, a custom embroidery business, with its own visual identity and a signature animation at the top of the page: a needle stitches the brand mark, one stitch at a time.",
+        "Landing page feita para a Litoral Bordados, empresa de bordados personalizados, com identidade visual própria e uma animação autoral no topo da página: uma agulha borda, ponto a ponto, o mesmo desenho da marca.",
+      en: "Landing page built for Litoral Bordados, a custom embroidery business, with its own visual identity and a signature animation at the top of the page: a needle stitches the brand mark, one stitch at a time.",
     },
     highlights: {
       "pt-BR": [
