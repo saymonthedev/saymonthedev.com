@@ -82,6 +82,7 @@ O dicionário em inglês tem o mesmo tipo do português: se um texto faltar em u
 1. Salve as capturas reais em `src/assets/projects/` — a de computador deve ser a **página inteira** (a prévia percorre a imagem no hover); a de celular é opcional.
 2. Em `src/data/projects.ts`, importe as imagens e copie o item existente.
 3. `published: false` mantém o projeto fora do site até ser aprovado; `liveUrl` só deve ser preenchido com um endereço confirmado no ar.
+4. Para destacar um projeto, preencha `badge` (o selo, nos dois idiomas) e deixe-o em primeiro na lista: com um número ímpar de projetos, o primeiro ocupa a linha inteira. Hoje o destaque é o Domínio Político.
 
 O layout se adapta à quantidade de projetos: com um número ímpar, um cartão “Mais projetos a caminho” completa a grade.
 

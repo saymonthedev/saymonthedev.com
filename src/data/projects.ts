@@ -4,6 +4,8 @@ import type { BrandIconName } from "./brand-icons";
 import cobreDesktop from "@/assets/projects/barbearia-cobre-desktop.webp";
 import crostaDesktop from "@/assets/projects/crosta-desktop.webp";
 import crostaMobile from "@/assets/projects/crosta-mobile.webp";
+import dominioDesktop from "@/assets/projects/dominio-politico-desktop.webp";
+import dominioMobile from "@/assets/projects/dominio-politico-mobile.webp";
 import cobreMobile from "@/assets/projects/barbearia-cobre-mobile.webp";
 import litoralDesktop from "@/assets/projects/litoral-bordados-desktop.webp";
 import litoralMobile from "@/assets/projects/litoral-bordados-mobile.webp";
@@ -16,6 +18,8 @@ export type Project = {
   /** Só projetos com `published: true` aparecem no site. */
   published: boolean;
   year: string;
+  /** Selo de destaque no cartão (use em um projeto só; ele vai primeiro na lista). */
+  badge?: Localized<string>;
   kind: Localized<string>;
   description: Localized<string>;
   highlights: Localized<string[]>;
@@ -40,6 +44,55 @@ export type Project = {
  * quantidade de projetos publicados.
  */
 export const projects: Project[] = [
+  {
+    slug: "dominio-politico",
+    title: "Domínio Político",
+    published: true,
+    year: "2026",
+    badge: {
+      "pt-BR": "Projeto em destaque",
+      en: "Featured project",
+    },
+    kind: {
+      "pt-BR": "Projeto autoral · Jogo de navegador",
+      en: "Personal project · Browser game",
+    },
+    description: {
+      "pt-BR":
+        "Simulador de carreira política em que você começa como cidadão comum e tenta chegar ao Planalto num Brasil que parte do real: o dia seguinte a um 2º turno presidencial, de 2002 a 2026, com os partidos, os eleitos e a economia daquele momento. Dali em diante, a história é simulada e o país continua andando mesmo quando você sai.",
+      en: "A political career simulator where you start as an ordinary citizen and try to reach the presidency in a Brazil that begins with real data: the day after a presidential runoff, from 2002 to 2026, with that moment's parties, elected officials and economy. From there the story is simulated, and the country keeps moving even while you're away.",
+    },
+    highlights: {
+      "pt-BR": [
+        "Motor de simulação determinístico: eleições com 2º turno e quociente eleitoral, Congresso, economia mensal e regras de cada época",
+        "Dados reais do TSE e do Banco Central, com mapa interativo dos 5.570 municípios",
+        "Crimes, investigações e dossiês só para personagens fictícios, com política de conteúdo verificada pelo motor",
+        "Mundo compartilhado entre jogadores, mundo só seu ou totalmente fictício, além de conquistas e ranking",
+      ],
+      en: [
+        "Deterministic simulation engine: two-round and proportional elections, Congress, a monthly economy and the rules of each era",
+        "Real data from Brazil's electoral court and central bank, with an interactive map of all 5,570 municipalities",
+        "Crimes, investigations and dossiers only for fictional characters, with a content policy enforced by the engine",
+        "A world shared with other players, a private one or a fully fictional one, plus achievements and a leaderboard",
+      ],
+    },
+    stack: [
+      { name: "Next.js", logo: "nextjs" },
+      { name: "TypeScript", logo: "typescript" },
+      { name: "Supabase", logo: "supabase" },
+      { name: "PostgreSQL", logo: "postgresql" },
+    ],
+    images: {
+      desktop: dominioDesktop,
+      mobile: dominioMobile,
+      alt: {
+        "pt-BR": "Captura de tela da página inicial do Domínio Político, com o mapa do Brasil por estado",
+        en: "Screenshot of the Domínio Político home page, with a map of Brazil by state",
+      },
+    },
+    repoUrl: "https://github.com/saymonthedev/dominio-politico",
+    liveUrl: "https://dominio-politico.com.br",
+  },
   {
     slug: "stainhaus",
     title: "Stainhaus",

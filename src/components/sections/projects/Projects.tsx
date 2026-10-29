@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, Check, FolderGit2 } from "lucide-react";
+import { ArrowUpRight, Check, FolderGit2, Sparkles } from "lucide-react";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -21,6 +21,7 @@ function ProjectCard({ project, featured }: { project: Project; featured: boolea
       data-reveal
       className={cn(
         "spotlight surface grid h-full gap-8 rounded-[2rem] p-3 sm:p-4",
+        project.badge && "ring-1 ring-accent-300/25",
         // Lado a lado, o texto ocupa a sobra de altura e os botões se alinham na base.
         featured ? "lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-10" : "grid-rows-[auto_1fr]",
       )}
@@ -28,6 +29,12 @@ function ProjectCard({ project, featured }: { project: Project; featured: boolea
       <ProjectPreview project={project} />
 
       <div className="flex flex-col px-3 pb-4 sm:px-4 lg:py-6 lg:pr-6 lg:pl-0">
+        {project.badge && (
+          <p className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-accent-300/40 bg-accent-300/10 py-1 pr-3 pl-2.5 text-xs font-medium text-accent-200">
+            <Sparkles aria-hidden="true" className="size-3.5" strokeWidth={2} />
+            {project.badge[locale]}
+          </p>
+        )}
         <p className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs text-subtle">
           <span>{project.kind[locale]}</span>
           <span aria-hidden="true">·</span>
