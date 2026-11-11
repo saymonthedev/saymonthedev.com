@@ -18,7 +18,9 @@ export function ProjectPreview({ project }: { project: Project }) {
   const { desktop, mobile, alt } = project.images;
 
   return (
-    <div className="group/preview relative pb-6 sm:pr-10 sm:pb-10">
+    // no cartão em destaque (duas colunas), a prévia não estica até a altura do texto: senão o
+    // celular e o botão, presos ao fundo, descem para longe da janela do navegador
+    <div className="group/preview relative self-center pb-6 sm:pr-10 sm:pb-10">
       <div className="overflow-hidden rounded-[1.25rem] border border-(--line-strong) bg-ink-850 shadow-[0_40px_80px_-40px_rgb(0_0_0/0.9)]">
         <div className="flex h-9 items-center gap-3 border-b border-(--line) px-4">
           <span aria-hidden="true" className="flex gap-1.5">
