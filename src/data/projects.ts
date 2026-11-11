@@ -9,6 +9,8 @@ import dominioMobile from "@/assets/projects/dominio-politico-mobile.webp";
 import cobreMobile from "@/assets/projects/barbearia-cobre-mobile.webp";
 import litoralDesktop from "@/assets/projects/litoral-bordados-desktop.webp";
 import litoralMobile from "@/assets/projects/litoral-bordados-mobile.webp";
+import ortsDesktop from "@/assets/projects/orts-climatizacao-desktop.webp";
+import ortsMobile from "@/assets/projects/orts-climatizacao-mobile.webp";
 import stainhausDesktop from "@/assets/projects/stainhaus-desktop.webp";
 import stainhausMobile from "@/assets/projects/stainhaus-mobile.webp";
 
@@ -92,6 +94,52 @@ export const projects: Project[] = [
     },
     repoUrl: "https://github.com/saymonthedev/dominio-politico",
     liveUrl: "https://dominio-politico.com.br",
+  },
+  {
+    slug: "orts-climatizacao",
+    title: "ORTS Climatização",
+    published: true,
+    year: "2026",
+    kind: {
+      "pt-BR": "Cliente · Site institucional e sistema de agendamentos",
+      en: "Client project · Website and scheduling system",
+    },
+    description: {
+      "pt-BR":
+        "Site institucional e sistema privado de agendamentos para a ORTS Climatização, de Jaraguá do Sul (SC). O site apresenta os serviços e os trabalhos reais da empresa e leva o cliente direto ao WhatsApp; o painel, usado só pelo proprietário, organiza os atendimentos por dia, semana e mês, com as regras da agenda conferidas no servidor e no próprio banco de dados.",
+      en: "Website and private scheduling system for ORTS Climatização, an HVAC company in Jaraguá do Sul, Brazil. The site presents the company's services and real work and sends customers straight to WhatsApp; the dashboard, used only by the owner, organizes appointments by day, week and month, with scheduling rules enforced on the server and in the database itself.",
+    },
+    highlights: {
+      "pt-BR": [
+        "Identidade visual criada a partir da logo: símbolo vetorizado, variações e paleta própria",
+        "Agenda com expediente, pausas, tempo de deslocamento e encaixes configuráveis, e conflitos barrados no PostgreSQL",
+        "Painel pensado para o celular: horários livres em tempo real, confirmação pelo WhatsApp e rota até o cliente",
+        "66 testes automatizados, acessibilidade 100 no Lighthouse e componentes feitos do zero, sem controles padrão do navegador",
+      ],
+      en: [
+        "Visual identity built from the logo: a vectorized mark, variations and its own palette",
+        "Scheduling with configurable hours, breaks, travel time and walk-ins, with conflicts blocked in PostgreSQL",
+        "Mobile-first dashboard: live open slots, WhatsApp confirmations and directions to each customer",
+        "66 automated tests, a 100 accessibility score on Lighthouse and components built from scratch, with no default browser widgets",
+      ],
+    },
+    stack: [
+      { name: "Next.js", logo: "nextjs" },
+      { name: "TypeScript", logo: "typescript" },
+      { name: "Node.js", logo: "nodejs" },
+      { name: "PostgreSQL", logo: "postgresql" },
+      { name: "Tailwind CSS", logo: "tailwind" },
+    ],
+    images: {
+      desktop: ortsDesktop,
+      mobile: ortsMobile,
+      alt: {
+        "pt-BR": "Site institucional da ORTS Climatização e, no celular, a agenda do painel administrativo com dados fictícios",
+        en: "ORTS Climatização website and, on mobile, the admin scheduling dashboard with fictional data",
+      },
+    },
+    repoUrl: "https://github.com/saymonthedev/agenda-orts-jaragua",
+    liveUrl: "https://orts-jaragua.vercel.app",
   },
   {
     slug: "stainhaus",
