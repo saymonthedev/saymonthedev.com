@@ -114,13 +114,13 @@ export const projects: Project[] = [
         "Identidade visual criada a partir da logo: símbolo vetorizado, variações e paleta própria",
         "Agenda com expediente, pausas, tempo de deslocamento e encaixes configuráveis, e conflitos barrados no PostgreSQL",
         "Painel pensado para o celular: horários livres em tempo real, confirmação pelo WhatsApp e rota até o cliente",
-        "66 testes automatizados, acessibilidade 100 no Lighthouse e componentes feitos do zero, sem controles padrão do navegador",
+        "68 testes automatizados, acessibilidade 100 no Lighthouse e componentes feitos do zero, sem controles padrão do navegador",
       ],
       en: [
         "Visual identity built from the logo: a vectorized mark, variations and its own palette",
         "Scheduling with configurable hours, breaks, travel time and walk-ins, with conflicts blocked in PostgreSQL",
         "Mobile-first dashboard: live open slots, WhatsApp confirmations and directions to each customer",
-        "66 automated tests, a 100 accessibility score on Lighthouse and components built from scratch, with no default browser widgets",
+        "68 automated tests, a 100 accessibility score on Lighthouse and components built from scratch, with no default browser widgets",
       ],
     },
     stack: [
@@ -139,7 +139,7 @@ export const projects: Project[] = [
       },
     },
     repoUrl: "https://github.com/saymonthedev/agenda-orts-jaragua",
-    liveUrl: "https://orts-jaragua.vercel.app",
+    liveUrl: "https://ortsclimatizacao.com.br",
   },
   {
     slug: "stainhaus",
