@@ -138,7 +138,7 @@ export const projects: Project[] = [
         en: "ORTS Climatização website and, on mobile, the admin scheduling dashboard with fictional data",
       },
     },
-    repoUrl: "https://github.com/saymonthedev/agenda-orts-jaragua",
+    repoUrl: "https://github.com/saymonthedev/agenda-orts-climatizacao",
     liveUrl: "https://ortsclimatizacao.com.br",
   },
   {
