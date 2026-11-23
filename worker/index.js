@@ -153,7 +153,8 @@ async function api(request, env, url) {
   const match = path.match(/^\/admin\/api\/leads\/([a-z0-9-]{1,80})$/);
   if (match) {
     if (request.method === "PATCH") return updateLead(request, env, match[1]);
-    return json({ error: "Método não permitido." }, 405, { allow: "PATCH" });
+    if (request.method === "DELETE") return deleteLead(env, match[1]);
+    return json({ error: "Método não permitido." }, 405, { allow: "PATCH, DELETE" });
   }
   throw new HttpError(404, "Não encontrado.");
 }
@@ -171,6 +172,7 @@ async function updateLead(request, env, id) {
   const now = new Date().toISOString();
   const sets = [];
   const values = [];
+  const reset = body.status === "novo";
   if ("status" in body) {
     if (!STATUSES.has(body.status)) throw new HttpError(400, "Status inválido.");
     sets.push("status = ?");
@@ -179,7 +181,27 @@ async function updateLead(request, env, id) {
       sets.push("sent_at = ?");
       values.push(now);
     }
-    if (body.status === "novo") sets.push("sent_at = NULL");
+    // Voltar para "A contatar" zera o histórico de envio.
+    if (reset) sets.push("sent_at = NULL", "followup_at = NULL");
+  }
+  // Retorno (follow-up): true marca como enviado agora, false desmarca.
+  if ("followup" in body && !reset) {
+    if (typeof body.followup !== "boolean") throw new HttpError(400, "Retorno inválido.");
+    sets.push("followup_at = ?");
+    values.push(body.followup ? now : null);
+  }
+  // Dados da empresa, para corrigir o que foi digitado errado.
+  for (const [field, max] of [["name", 120], ["niche", 80], ["area", 80], ["finding", 500]]) {
+    if (!(field in body)) continue;
+    const value = text(body[field], max).trim();
+    if (field === "name" && !value) throw new HttpError(400, "Informe o nome da empresa.");
+    sets.push(`${field} = ?`);
+    values.push(value);
+  }
+  if ("phone" in body) {
+    const { phone, wa } = parsePhone(body.phone);
+    sets.push("phone = ?", "wa = ?");
+    values.push(phone, wa);
   }
   if ("notes" in body) {
     sets.push("notes = ?");
@@ -200,14 +222,26 @@ async function updateLead(request, env, id) {
   return json({ lead: toLead(row) });
 }
 
+async function deleteLead(env, id) {
+  const { meta } = await env.DB.prepare("DELETE FROM leads WHERE id = ?").bind(id).run();
+  if (!meta.changes) throw new HttpError(404, "Empresa não encontrada.");
+  return json({ ok: true });
+}
+
+/** Telefone como foi digitado + só os dígitos com o 55, para o link do WhatsApp. */
+function parsePhone(value) {
+  const phone = text(value ?? "", 40).trim();
+  const digits = phone.replace(/\D/g, "");
+  const wa = digits.startsWith("55") && digits.length >= 12 ? digits : `55${digits}`;
+  if (wa.length < 12 || wa.length > 13) throw new HttpError(400, "Informe o WhatsApp com DDD, por exemplo (47) 99999-9999.");
+  return { phone, wa };
+}
+
 async function createLead(request, env) {
   const body = await readJson(request);
   const name = text(body.name ?? "", 120).trim();
   if (!name) throw new HttpError(400, "Informe o nome da empresa.");
-  const phone = text(body.phone ?? "", 40).trim();
-  const digits = phone.replace(/\D/g, "");
-  const wa = digits.startsWith("55") && digits.length >= 12 ? digits : `55${digits}`;
-  if (wa.length < 12 || wa.length > 13) throw new HttpError(400, "Informe o WhatsApp com DDD, por exemplo (47) 99999-9999.");
+  const { phone, wa } = parsePhone(body.phone);
 
   const niche = text(body.niche ?? "", 80).trim();
   const area = text(body.area ?? "", 80).trim();
@@ -270,6 +304,7 @@ function toLead(row) {
     status: row.status,
     notes: row.notes,
     sentAt: row.sent_at,
+    followupAt: row.followup_at ?? null,
     createdAt: row.created_at,
     updatedAt: row.updated_at,
   };

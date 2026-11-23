@@ -120,6 +120,8 @@ Lista de prospecção: empresas da região, o que foi encontrado em cada uma, a 
 - O login é do **Cloudflare Access**. O Worker confere a assinatura do token que o Access envia em cada requisição (`Cf-Access-Jwt-Assertion`). Enquanto `ACCESS_TEAM_DOMAIN` e `ACCESS_AUD` estiverem vazios, `/admin` responde “Área em configuração” para todo mundo.
 - Os dados ficam no banco D1 `saymon-admin` (binding `DB`). **Nunca coloque empresas ou anotações no repositório**: ele é público. Aqui vai só a estrutura, em `migrations/`.
 - A página (`public/admin/`) usa CSS e JS em arquivos próprios, porque a CSP do site (`public/_headers`) não aceita `<style>` dentro do HTML.
+- Feita para usar no celular. A aba **Fazer agora** junta só o que pede ação: quem respondeu, as negociações, os retornos vencidos (3 dias sem resposta) e quem ainda não recebeu mensagem. O botão verde abre o WhatsApp com o texto pronto e a ficha pergunta “Mandou?” ao voltar. O retorno enviado fica em `followup_at` (migração `0002`).
+- Dá para pôr a lista na tela inicial do celular. O manifesto (`public/admin/manifest.webmanifest`) fica atrás do login, por isso o `<link rel="manifest">` usa `crossorigin="use-credentials"`; os ícones são os públicos do site.
 
 **Ativar o login (uma vez).**
 
@@ -172,7 +174,7 @@ src/
   assets/              foto, capturas dos projetos e fontes da imagem de compartilhamento
 scripts/               otimização de imagens e geração de ícones
 public/                bandeiras, ícones do app e _headers (cabeçalhos da Cloudflare)
-  admin/               página da área privada /admin (HTML, CSS e JS)
+  admin/               página da área privada /admin (HTML, CSS, JS e manifesto)
 worker/                Worker da área privada: login do Access e API da lista
 migrations/            estrutura do banco D1 da área privada (sem dados)
 ```

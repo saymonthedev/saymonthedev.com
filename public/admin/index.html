@@ -2,135 +2,224 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
   <meta name="robots" content="noindex, nofollow">
   <meta name="color-scheme" content="light dark">
-  <title>Prospecção · Admin</title>
+  <meta name="theme-color" content="#f2f5fa" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#090e18" media="(prefers-color-scheme: dark)">
+  <title>Prospecção</title>
+  <!-- O manifesto fica atrás do login: sem use-credentials o navegador busca sem o cookie do Access. -->
+  <link rel="manifest" href="/admin/manifest.webmanifest" crossorigin="use-credentials">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-icon.png">
   <link rel="stylesheet" href="/admin/admin.css">
   <script src="/admin/admin.js" defer></script>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <p class="eyebrow">Área privada · saymonthedev.com</p>
-      <h1>Prospecção <em>Jaraguá e região</em></h1>
-      <p class="lead" id="lead">Empresas de serviço com WhatsApp. Cada ficha diz o que encontrei, o que oferecer e traz a mensagem pronta para enviar.</p>
-    </header>
-
-    <details class="howto" id="howto" open>
-      <summary>Como usar esta lista</summary>
-      <ol>
-        <li>Leia o “Antes de enviar” da ficha. Leva 10 segundos e evita mandar algo que já mudou.</li>
-        <li>Toque em <b>Abrir no WhatsApp</b>: a mensagem já vai escrita. Ajuste o que quiser e envie.</li>
-        <li>Mude o status para <b>Mensagem enviada</b>. Depois de 3 dias sem resposta, a ficha mostra a mensagem de retorno.</li>
-      </ol>
-      <p class="rhythm">Ritmo: 10 contatos novos por semana, começando pela prioridade 1. A maioria não responde, e isso é normal.</p>
-    </details>
-
-    <section class="board" aria-label="Andamento">
-      <div class="chips" id="chips" role="group" aria-label="Filtrar por status"></div>
-      <label class="toggle"><input type="checkbox" id="only-p1"> Mostrar só a prioridade 1</label>
-    </section>
-
-    <p class="notice" id="notice" hidden></p>
-
-    <section class="list" id="list" aria-live="polite">
-      <div class="empty" id="empty">
-        <strong id="empty-title">Carregando a lista…</strong>
-        <span id="empty-text">As empresas aparecem aqui, cada uma com a mensagem pronta.</span>
+  <header class="top">
+    <div class="wrap top-in">
+      <div>
+        <p class="eyebrow">Área privada</p>
+        <h1>Prospecção</h1>
+        <p class="summary" id="summary">Carregando…</p>
       </div>
-    </section>
+      <button class="icon-btn" type="button" id="reload" aria-label="Atualizar a lista">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36L21 8"/><path d="M21 3v5h-5"/></svg>
+      </button>
+    </div>
+  </header>
 
-    <details class="add" id="add">
-      <summary>Adicionar empresa</summary>
-      <form id="add-form" novalidate>
-        <div class="two">
-          <label class="field" for="add-name">Nome da empresa
-            <input id="add-name" name="name" autocomplete="off" required>
-          </label>
-          <label class="field" for="add-phone">WhatsApp
-            <input id="add-phone" name="phone" inputmode="tel" placeholder="(47) 99999-9999" required>
-          </label>
-        </div>
-        <div class="two">
-          <label class="field" for="add-niche">Ramo
-            <input id="add-niche" name="niche" placeholder="Ex.: Vidraçaria">
-          </label>
-          <label class="field" for="add-area">Bairro ou cidade
-            <input id="add-area" name="area" placeholder="Ex.: Vila Nova">
-          </label>
-        </div>
-        <label class="field" for="add-finding">O que você encontrou
-          <input id="add-finding" name="finding" placeholder="Ex.: só tem Instagram">
-        </label>
-        <label class="field" for="add-message">Mensagem
-          <textarea id="add-message" name="message" placeholder="Deixe em branco para usar a mensagem padrão com o nome da empresa."></textarea>
-        </label>
-        <p class="err" id="add-err" hidden></p>
-        <div class="actions"><button class="btn" type="submit" id="add-submit">Adicionar à lista</button></div>
-      </form>
-    </details>
-
-    <footer>Dados públicos do Guia Fácil, conferidos em 23/11/2026. Telefones e sites mudam: confira cada empresa antes de enviar.</footer>
+  <div class="bar">
+    <div class="wrap bar-in">
+      <label class="search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="sr">Buscar empresa</span>
+        <input id="q" type="search" placeholder="Buscar empresa, ramo ou bairro" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search">
+      </label>
+      <div class="tabs" id="tabs" role="group" aria-label="Mostrar">
+        <button class="tab" type="button" data-tab="agora"><span class="n">–</span><span class="t">Fazer agora</span></button>
+        <button class="tab" type="button" data-tab="aguardando"><span class="n">–</span><span class="t">Aguardando</span></button>
+        <button class="tab" type="button" data-tab="encerradas"><span class="n">–</span><span class="t">Encerradas</span></button>
+        <button class="tab" type="button" data-tab="todas"><span class="n">–</span><span class="t">Todas</span></button>
+      </div>
+    </div>
   </div>
 
-  <template id="card-tpl">
-    <article class="card" data-status="novo">
-      <header class="card-head">
-        <div class="who">
-          <h2 class="name"></h2>
-          <p class="meta"></p>
+  <main class="wrap main">
+    <div class="notice" id="notice" hidden>
+      <p id="notice-text"></p>
+      <button class="btn small" type="button" id="notice-action"></button>
+    </div>
+
+    <section class="list" id="list" aria-live="polite"></section>
+    <div class="empty" id="empty">
+      <strong id="empty-title">Carregando a lista…</strong>
+      <span id="empty-text"></span>
+    </div>
+
+    <details class="howto" id="howto">
+      <summary>Como usar</summary>
+      <ol>
+        <li><b>Fazer agora</b> mostra só o que depende de você: quem respondeu, quem está em negociação, os retornos que venceram e quem ainda não recebeu mensagem.</li>
+        <li>O botão verde abre o WhatsApp com a mensagem pronta. Depois de mandar, volte aqui e toque em <b>Sim, enviei</b>.</li>
+        <li>Quando alguém responder, busque o nome, toque em <b>Atualizar</b>, escolha o status e anote o que disseram.</li>
+        <li>Sem resposta em 3 dias, a empresa volta para <b>Fazer agora</b> com um retorno curto pronto. Mande um só; depois disso, deixe quieto.</li>
+        <li>Toque no nome da empresa para ver o resto: o que encontrei, a mensagem, o telefone e os links.</li>
+      </ol>
+      <p class="tip">No celular, abra o menu do navegador e toque em <b>Adicionar à tela inicial</b>: a lista vira um ícone, como um app.</p>
+    </details>
+
+    <p class="foot">Dados públicos do Guia Fácil, conferidos em 23/11/2026. Telefones e sites mudam: confira antes de enviar.</p>
+  </main>
+
+  <button class="fab" type="button" id="add-open">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+    Empresa
+  </button>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+    <span id="toast-text"></span>
+    <button type="button" id="toast-undo" hidden>Desfazer</button>
+  </div>
+
+  <dialog class="sheet" id="status-sheet" aria-labelledby="status-title">
+    <div class="sheet-in">
+      <div class="sheet-head">
+        <div>
+          <h2 class="sheet-title" id="status-title">Atualizar</h2>
+          <p class="sheet-sub" id="status-name"></p>
         </div>
-        <span class="prio"></span>
-      </header>
-      <dl class="facts">
-        <div><dt>O que encontrei</dt><dd class="finding"></dd></div>
-        <div><dt>Oferecer</dt><dd class="offer"></dd></div>
-      </dl>
-      <p class="check"><b>Antes de enviar:</b> <span class="check-text"></span></p>
-      <div class="msg-wrap">
-        <p class="msg"></p>
-        <div class="msg-editor" hidden>
-          <textarea class="msg-edit" aria-label="Editar mensagem"></textarea>
-          <div class="edit-actions">
-            <button class="btn small save-msg" type="button">Salvar mensagem</button>
-            <button class="btn small cancel-msg" type="button">Cancelar</button>
-          </div>
+        <button class="icon-btn" type="button" data-close aria-label="Fechar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <fieldset class="opts">
+        <legend>Em que pé está?</legend>
+        <div class="opts-grid" id="status-opts"></div>
+      </fieldset>
+      <div class="field">
+        <div class="field-row">
+          <label for="status-notes">Anotações</label>
+          <button class="mini" type="button" id="status-date">+ data de hoje</button>
+        </div>
+        <textarea id="status-notes" rows="4" placeholder="Ex.: falei com o dono, pediu para chamar em dezembro"></textarea>
+      </div>
+      <div class="sheet-actions">
+        <button class="btn primary" type="button" id="status-save">Salvar</button>
+        <button class="btn" type="button" data-close>Cancelar</button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="sheet" id="lead-sheet" aria-labelledby="lead-title">
+    <form class="sheet-in" id="lead-form" novalidate>
+      <div class="sheet-head">
+        <h2 class="sheet-title" id="lead-title">Adicionar empresa</h2>
+        <button class="icon-btn" type="button" data-close aria-label="Fechar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <label class="field" for="f-name">Nome da empresa
+        <input id="f-name" name="name" autocomplete="off" autocapitalize="words" required>
+      </label>
+      <label class="field" for="f-phone">WhatsApp
+        <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="off" placeholder="(47) 99999-9999" required>
+      </label>
+      <div class="two">
+        <label class="field" for="f-niche">Ramo
+          <input id="f-niche" name="niche" autocomplete="off" placeholder="Ex.: Vidraçaria">
+        </label>
+        <label class="field" for="f-area">Bairro ou cidade
+          <input id="f-area" name="area" autocomplete="off" placeholder="Ex.: Vila Nova">
+        </label>
+      </div>
+      <label class="field" for="f-finding">O que você encontrou
+        <input id="f-finding" name="finding" autocomplete="off" placeholder="Ex.: só tem Instagram">
+      </label>
+      <label class="field" for="f-message" id="f-message-field">Mensagem
+        <textarea id="f-message" name="message" rows="5" placeholder="Em branco, usa a mensagem padrão com o nome da empresa."></textarea>
+      </label>
+      <p class="err" id="lead-err" hidden></p>
+      <div class="sheet-actions">
+        <button class="btn primary" type="submit" id="lead-submit">Adicionar</button>
+        <button class="btn" type="button" data-close>Cancelar</button>
+      </div>
+      <button class="danger-link" type="button" id="lead-delete" hidden>Excluir esta empresa da lista</button>
+    </form>
+  </dialog>
+
+  <template id="card-tpl">
+    <article class="card">
+      <h3 class="card-title">
+        <button class="head" type="button" aria-expanded="false">
+          <span class="name"></span>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+      </h3>
+      <p class="meta"><span class="state"><span class="dot"></span><span class="state-text"></span></span><span class="meta-text"></span></p>
+      <p class="context"></p>
+      <div class="confirm" hidden>
+        <p class="confirm-q"></p>
+        <div class="row">
+          <button class="btn small primary confirm-yes" type="button">Sim, enviei</button>
+          <button class="btn small confirm-no" type="button">Ainda não</button>
         </div>
       </div>
       <div class="actions">
-        <a class="btn wa" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20.5l1.8-5.2A8.4 8.4 0 1 1 21 11.5Z"/></svg>
-          Abrir no WhatsApp
+        <a class="btn main-act" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20.5l1.8-5.2A8.4 8.4 0 1 1 21 11.5Z"/></svg>
+          <span class="act-label"></span>
         </a>
-        <button class="btn copy-msg" type="button">Copiar mensagem</button>
-        <button class="btn edit-msg" type="button">Editar</button>
+        <button class="btn update" type="button">Atualizar</button>
       </div>
-      <div class="after-send" hidden>
-        <span>Enviou?</span>
-        <button class="btn small mark-sent" type="button">Marcar como enviada</button>
-      </div>
-      <div class="contact">
-        <span>WhatsApp <span class="phone"></span></span>
-        <button class="linkbtn copy-phone" type="button">copiar número</button>
-        <span class="links"></span>
-      </div>
-      <div class="followup" hidden>
-        <p class="followup-text"></p>
-        <div class="row">
-          <a class="btn small wa followup-wa" target="_blank" rel="noopener">Mandar retorno no WhatsApp</a>
-          <button class="btn small copy-followup" type="button">Copiar retorno</button>
+      <div class="details" hidden>
+        <dl class="facts">
+          <div class="f-finding"><dt>O que encontrei</dt><dd></dd></div>
+          <div class="f-offer"><dt>Oferecer</dt><dd></dd></div>
+        </dl>
+        <p class="check"><b>Antes de enviar:</b> <span class="check-text"></span></p>
+        <section class="block">
+          <div class="block-head"><h4>Anotações</h4><button class="mini edit-notes" type="button">Anotar</button></div>
+          <p class="notes-text"></p>
+        </section>
+        <section class="block b-followup" hidden>
+          <div class="block-head"><h4>Retorno</h4><button class="mini toggle-followup" type="button"></button></div>
+          <p class="followup-state"></p>
+          <p class="msg followup-text"></p>
+          <div class="row">
+            <a class="btn small wa-followup" target="_blank" rel="noopener">Abrir no WhatsApp</a>
+            <button class="btn small copy-followup" type="button">Copiar</button>
+          </div>
+        </section>
+        <section class="block">
+          <div class="block-head"><h4>Mensagem</h4><button class="mini edit-msg" type="button">Editar</button></div>
+          <p class="msg msg-text"></p>
+          <div class="msg-editor" hidden>
+            <textarea class="msg-edit" aria-label="Editar mensagem"></textarea>
+            <div class="row">
+              <button class="btn small primary save-msg" type="button">Salvar mensagem</button>
+              <button class="btn small cancel-msg" type="button">Cancelar</button>
+            </div>
+          </div>
+          <div class="row msg-actions">
+            <a class="btn small wa-msg" target="_blank" rel="noopener">Abrir no WhatsApp</a>
+            <button class="btn small copy-msg" type="button">Copiar</button>
+          </div>
+        </section>
+        <section class="block">
+          <div class="block-head"><h4>Contato</h4></div>
+          <div class="row contact-row">
+            <span class="phone"></span>
+            <button class="btn small copy-phone" type="button">Copiar número</button>
+            <a class="btn small call">Ligar</a>
+          </div>
+          <p class="links"></p>
+        </section>
+        <div class="card-foot">
+          <p class="dates"></p>
+          <button class="mini edit-lead" type="button">Corrigir dados</button>
         </div>
       </div>
-      <div class="track">
-        <label class="field status-field">Status
-          <select class="status-select"></select>
-        </label>
-        <label class="field notes-field">Anotações
-          <textarea class="notes" rows="1" placeholder="Ex.: falei com o dono, pediu para chamar em dezembro"></textarea>
-        </label>
-      </div>
-      <p class="sent-info" hidden></p>
       <p class="err card-err" hidden></p>
     </article>
   </template>
