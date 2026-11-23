@@ -97,9 +97,14 @@ export function Projects() {
   const copy = dict.projects;
   const onPointerMove = useSpotlight<HTMLDivElement>();
   const projects = publishedProjects;
-  // Um card "o próximo pode ser o seu" completa a grade quando ela fica ímpar
-  // ou com um só item, e leva direto ao WhatsApp.
-  const showMore = projects.length === 0 || projects.length % 2 === 1;
+  // O primeiro projeto ocupa a linha inteira quando tem selo de destaque (ou
+  // quando a conta não fecha em pares); os demais formam pares.
+  const featuredFirst =
+    projects.length === 1 || (projects.length > 1 && (Boolean(projects[0].badge) || projects.length % 2 === 1));
+  const paired = projects.length - (featuredFirst ? 1 : 0);
+  // O card "o próximo pode ser o seu" sempre fecha a grade e leva ao WhatsApp:
+  // ocupa o espaço que sobra no último par ou uma linha inteira.
+  const moreFillsGap = paired % 2 === 1;
 
   return (
     <section
@@ -129,43 +134,44 @@ export function Projects() {
           {projects.map((project, index) => (
             <div
               key={project.slug}
-              className={cn(projects.length > 1 && index === 0 && projects.length % 2 === 1 && "lg:col-span-2")}
+              className={cn(projects.length > 1 && index === 0 && featuredFirst && "lg:col-span-2")}
             >
               {/* Layout de destaque só quando o cartão ocupa a linha inteira. */}
-              <ProjectCard project={project} featured={projects.length === 1 || (index === 0 && projects.length % 2 === 1)} />
+              <ProjectCard project={project} featured={index === 0 && featuredFirst} />
             </div>
           ))}
 
-          {showMore && (
-            <div
-              data-reveal
-              style={revealDelay(120)}
-              className={cn(
-                "flex flex-col gap-6 rounded-[2rem] border border-dashed border-(--line-strong) p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8",
-                projects.length > 1 && "lg:col-span-2",
-              )}
-            >
-              <div className="flex items-start gap-5">
-                <span className="grid size-12 shrink-0 place-items-center rounded-2xl border border-(--line-strong) bg-white/[0.03] text-accent-200">
-                  <MessageCircle aria-hidden="true" className="size-5" strokeWidth={1.6} />
-                </span>
-                <div>
-                  <h3 className="text-lg font-semibold tracking-tight">{copy.more.title}</h3>
-                  <p className="mt-1.5 max-w-xl text-[15px] leading-relaxed text-muted">{copy.more.text}</p>
-                </div>
+          <div
+            data-reveal
+            style={revealDelay(120)}
+            className={cn(
+              "flex flex-col gap-6 rounded-[2rem] border border-dashed border-(--line-strong) p-6 sm:p-8",
+              moreFillsGap
+                ? "justify-center sm:flex-row sm:items-center sm:justify-between lg:flex-col lg:items-start lg:justify-center"
+                : "sm:flex-row sm:items-center sm:justify-between",
+              projects.length > 1 && !moreFillsGap && "lg:col-span-2",
+            )}
+          >
+            <div className="flex items-start gap-5">
+              <span className="grid size-12 shrink-0 place-items-center rounded-2xl border border-(--line-strong) bg-white/[0.03] text-accent-200">
+                <MessageCircle aria-hidden="true" className="size-5" strokeWidth={1.6} />
+              </span>
+              <div>
+                <h3 className="text-lg font-semibold tracking-tight">{copy.more.title}</h3>
+                <p className="mt-1.5 max-w-xl text-[15px] leading-relaxed text-muted">{copy.more.text}</p>
               </div>
-              <ButtonLink
-                href={whatsappUrl(dict.whatsappMessage)}
-                external
-                leading={<BrandLogo name="whatsapp" tone="mono" className="size-4" />}
-                icon={ArrowUpRight}
-                iconMotion="diag"
-                className="shrink-0"
-              >
-                {copy.more.cta}
-              </ButtonLink>
             </div>
-          )}
+            <ButtonLink
+              href={whatsappUrl(dict.whatsappMessage)}
+              external
+              leading={<BrandLogo name="whatsapp" tone="mono" className="size-4" />}
+              icon={ArrowUpRight}
+              iconMotion="diag"
+              className="shrink-0"
+            >
+              {copy.more.cta}
+            </ButtonLink>
+          </div>
         </div>
       </div>
     </section>

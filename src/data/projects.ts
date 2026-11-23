@@ -192,6 +192,51 @@ export const projects: Project[] = [
     liveUrl: "https://barbearia-cobre.vercel.app",
   },
   {
+    slug: "litoral-bordados",
+    title: "Litoral Bordados",
+    published: true,
+    year: "2026",
+    kind: {
+      "pt-BR": "Projeto conceitual · Site profissional",
+      en: "Concept project · Business website",
+    },
+    description: {
+      "pt-BR":
+        "Site para uma empresa fictícia de bordados personalizados, com identidade visual própria e uma animação no topo em que a agulha borda a marca, ponto a ponto.",
+      en: "Website for a fictional custom embroidery business, with its own visual identity and an animation at the top where a needle stitches the brand mark, one stitch at a time.",
+    },
+    highlights: {
+      "pt-BR": [
+        "A agulha borda a logo no topo da página, com botão para pausar a animação",
+        "Galeria com peças de exemplo: uniforme, boné, jaleco, toalha e patch",
+        "Pedido de orçamento direto no WhatsApp, com a mensagem já escrita",
+        "Identidade visual criada do zero: logo, cores e ícones em pesponto",
+      ],
+      en: [
+        "A needle stitches the logo at the top of the page, with a button to pause the animation",
+        "A gallery of sample pieces: uniform, cap, lab coat, towel and patch",
+        "Quote requests straight to WhatsApp, with the message already written",
+        "Visual identity built from scratch: logo, colors and stitched icons",
+      ],
+    },
+    stack: [
+      { name: "Next.js", logo: "nextjs" },
+      { name: "React", logo: "react" },
+      { name: "TypeScript", logo: "typescript" },
+      { name: "Tailwind CSS", logo: "tailwind" },
+    ],
+    images: {
+      desktop: litoralDesktop,
+      mobile: litoralMobile,
+      alt: {
+        "pt-BR": "Captura de tela do site da Litoral Bordados, projeto conceitual, com o bastidor bordando a marca",
+        en: "Screenshot of the Litoral Bordados concept website, with the embroidery hoop stitching the brand",
+      },
+    },
+    repoUrl: "https://github.com/saymonthedev/litoral-bordados",
+    liveUrl: "https://litoralbordados.com",
+  },
+  {
     slug: "crosta",
     title: "Crosta",
     published: true,
@@ -280,53 +325,6 @@ export const projects: Project[] = [
     },
     repoUrl: "https://github.com/saymonthedev/dominio-politico",
     liveUrl: "https://dominio-politico.com.br",
-  },
-  {
-    slug: "litoral-bordados",
-    title: "Litoral Bordados",
-    // Fora do site até o site da Litoral ter as fotos dos trabalhos e os
-    // canais de atendimento (hoje mostra "espaço reservado" no lugar deles).
-    published: false,
-    year: "2026",
-    kind: {
-      "pt-BR": "Cliente · Landing page",
-      en: "Client project · Landing page",
-    },
-    description: {
-      "pt-BR":
-        "Landing page feita para a Litoral Bordados, empresa de bordados personalizados, com identidade visual própria e uma animação autoral no topo da página: uma agulha borda, ponto a ponto, o mesmo desenho da marca.",
-      en: "Landing page built for Litoral Bordados, a custom embroidery business, with its own visual identity and a signature animation at the top of the page: a needle stitches the brand mark, one stitch at a time.",
-    },
-    highlights: {
-      "pt-BR": [
-        "Animação “Do fio ao bordado” feita à mão com SVG e CSS",
-        "Respeita a preferência de movimento reduzido e tem controle de pausa",
-        "Rolagem com inércia e parallax entre as seções",
-        "Gerado como site estático, preparado para publicação na Cloudflare",
-      ],
-      en: [
-        "Hand-built “thread to stitch” animation in SVG and CSS",
-        "Honors reduced-motion preferences and includes a pause control",
-        "Inertia scrolling and parallax between sections",
-        "Built as a static site, set up for deployment on Cloudflare",
-      ],
-    },
-    stack: [
-      { name: "Next.js", logo: "nextjs" },
-      { name: "React", logo: "react" },
-      { name: "TypeScript", logo: "typescript" },
-      { name: "Tailwind CSS", logo: "tailwind" },
-    ],
-    images: {
-      desktop: litoralDesktop,
-      mobile: litoralMobile,
-      alt: {
-        "pt-BR": "Captura de tela do site da Litoral Bordados",
-        en: "Screenshot of the Litoral Bordados website",
-      },
-    },
-    repoUrl: "https://github.com/saymonthedev/litoral-bordados",
-    liveUrl: "https://litoralbordados.com",
   },
 ];
 

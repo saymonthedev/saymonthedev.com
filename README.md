@@ -83,12 +83,12 @@ O dicionário em inglês tem o mesmo tipo do português: se um texto faltar em u
 1. Salve as capturas reais em `src/assets/projects/` — a de computador deve ser a **página inteira** (a prévia percorre a imagem no hover); a de celular é opcional.
 2. Em `src/data/projects.ts`, importe as imagens e copie o item existente.
 3. `published: false` mantém o projeto fora do site até ser aprovado; `liveUrl` só deve ser preenchido com um endereço confirmado no ar.
-4. Para destacar um projeto, preencha `badge` (o selo, nos dois idiomas) e deixe-o em primeiro na lista: com um número ímpar de projetos, o primeiro ocupa a linha inteira. Hoje o destaque é a ORTS Climatização.
+4. Para destacar um projeto, preencha `badge` (o selo, nos dois idiomas) e deixe-o em primeiro na lista: ele ocupa a linha inteira e os demais formam pares. Hoje o destaque é a ORTS Climatização.
 5. Escreva os destaques pensando em quem contrata (o que o cliente ganha), não em quem programa: as tecnologias já aparecem nos selos do cartão.
 
-O layout se adapta à quantidade de projetos: com um número ímpar, um cartão “O próximo pode ser o seu”, com botão para o WhatsApp, completa a grade.
+O layout se adapta à quantidade de projetos: o cartão “O próximo pode ser o seu”, com botão para o WhatsApp, sempre fecha a grade, no espaço que sobra do último par ou numa linha própria.
 
-A Litoral Bordados está com `published: false` até o site dela ter as fotos dos trabalhos e os canais de atendimento.
+Ordem atual: clientes (ORTS, Stainhaus), projetos conceituais (Barbearia Cobre, Litoral Bordados, Crosta) e o projeto pessoal (Domínio Político).
 
 ### Página pensada para quem contrata
 
