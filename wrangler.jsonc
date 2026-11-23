@@ -33,8 +33,8 @@
   "vars": {
     // Cloudflare Access da área /admin (ver README). Enquanto estiverem
     // vazios, /admin fica fechado para todo mundo.
-    "ACCESS_TEAM_DOMAIN": "",
-    "ACCESS_AUD": ""
+    "ACCESS_TEAM_DOMAIN": "https://delicate-mud-b497.cloudflareaccess.com",
+    "ACCESS_AUD": "e8345da4802aca113ed96d7c42c4b45037b07485141dffaf5f3d801d6bb23cb8"
   },
   // Domínio próprio: com o DNS do domínio na Cloudflare, o deploy cria os
   // registros e o certificado HTTPS sozinho.
