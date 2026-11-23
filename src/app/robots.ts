@@ -5,7 +5,8 @@ export const dynamic = "force-static";
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: { userAgent: "*", allow: "/" },
+    // /admin é a área privada (login do Cloudflare Access): fora da busca.
+    rules: { userAgent: "*", allow: "/", disallow: "/admin" },
     sitemap: `${siteUrl}/sitemap.xml`,
   };
 }

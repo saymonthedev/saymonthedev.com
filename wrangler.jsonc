@@ -4,15 +4,37 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "saymon-portfolio",
   "compatibility_date": "2026-10-01",
+  // Código só para a área privada /admin (login + API da lista de
+  // prospecção). O resto do site continua servido direto dos arquivos.
+  "main": "worker/index.js",
   // Só os domínios próprios: sem cópia do site em *.workers.dev.
   "workers_dev": false,
   "preview_urls": false,
   "assets": {
     "directory": "./out",
+    "binding": "ASSETS",
     // /en e /en/ apontam para o mesmo arquivo (en.html)
     "html_handling": "auto-trailing-slash",
     // endereço inexistente cai na 404.html gerada pelo Next
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    // Só /admin passa pelo Worker antes dos arquivos (confere o login).
+    "run_worker_first": ["/admin", "/admin/*"]
+  },
+  // Banco da lista de prospecção. Os dados ficam só no banco; aqui no
+  // repositório (público) vai apenas a estrutura, em migrations/.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "saymon-admin",
+      "database_id": "76c9c076-1534-49df-bf72-04c54d36f48c",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "vars": {
+    // Cloudflare Access da área /admin (ver README). Enquanto estiverem
+    // vazios, /admin fica fechado para todo mundo.
+    "ACCESS_TEAM_DOMAIN": "",
+    "ACCESS_AUD": ""
   },
   // Domínio próprio: com o DNS do domínio na Cloudflare, o deploy cria os
   // registros e o certificado HTTPS sozinho.

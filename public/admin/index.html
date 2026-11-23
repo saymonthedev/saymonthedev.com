@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="color-scheme" content="light dark">
+  <title>Prospecção · Admin</title>
+  <link rel="stylesheet" href="/admin/admin.css">
+  <script src="/admin/admin.js" defer></script>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <p class="eyebrow">Área privada · saymonthedev.com</p>
+      <h1>Prospecção <em>Jaraguá e região</em></h1>
+      <p class="lead" id="lead">Empresas de serviço com WhatsApp. Cada ficha diz o que encontrei, o que oferecer e traz a mensagem pronta para enviar.</p>
+    </header>
+
+    <details class="howto" id="howto" open>
+      <summary>Como usar esta lista</summary>
+      <ol>
+        <li>Leia o “Antes de enviar” da ficha. Leva 10 segundos e evita mandar algo que já mudou.</li>
+        <li>Toque em <b>Abrir no WhatsApp</b>: a mensagem já vai escrita. Ajuste o que quiser e envie.</li>
+        <li>Mude o status para <b>Mensagem enviada</b>. Depois de 3 dias sem resposta, a ficha mostra a mensagem de retorno.</li>
+      </ol>
+      <p class="rhythm">Ritmo: 10 contatos novos por semana, começando pela prioridade 1. A maioria não responde, e isso é normal.</p>
+    </details>
+
+    <section class="board" aria-label="Andamento">
+      <div class="chips" id="chips" role="group" aria-label="Filtrar por status"></div>
+      <label class="toggle"><input type="checkbox" id="only-p1"> Mostrar só a prioridade 1</label>
+    </section>
+
+    <p class="notice" id="notice" hidden></p>
+
+    <section class="list" id="list" aria-live="polite">
+      <div class="empty" id="empty">
+        <strong id="empty-title">Carregando a lista…</strong>
+        <span id="empty-text">As empresas aparecem aqui, cada uma com a mensagem pronta.</span>
+      </div>
+    </section>
+
+    <details class="add" id="add">
+      <summary>Adicionar empresa</summary>
+      <form id="add-form" novalidate>
+        <div class="two">
+          <label class="field" for="add-name">Nome da empresa
+            <input id="add-name" name="name" autocomplete="off" required>
+          </label>
+          <label class="field" for="add-phone">WhatsApp
+            <input id="add-phone" name="phone" inputmode="tel" placeholder="(47) 99999-9999" required>
+          </label>
+        </div>
+        <div class="two">
+          <label class="field" for="add-niche">Ramo
+            <input id="add-niche" name="niche" placeholder="Ex.: Vidraçaria">
+          </label>
+          <label class="field" for="add-area">Bairro ou cidade
+            <input id="add-area" name="area" placeholder="Ex.: Vila Nova">
+          </label>
+        </div>
+        <label class="field" for="add-finding">O que você encontrou
+          <input id="add-finding" name="finding" placeholder="Ex.: só tem Instagram">
+        </label>
+        <label class="field" for="add-message">Mensagem
+          <textarea id="add-message" name="message" placeholder="Deixe em branco para usar a mensagem padrão com o nome da empresa."></textarea>
+        </label>
+        <p class="err" id="add-err" hidden></p>
+        <div class="actions"><button class="btn" type="submit" id="add-submit">Adicionar à lista</button></div>
+      </form>
+    </details>
+
+    <footer>Dados públicos do Guia Fácil, conferidos em 23/11/2026. Telefones e sites mudam: confira cada empresa antes de enviar.</footer>
+  </div>
+
+  <template id="card-tpl">
+    <article class="card" data-status="novo">
+      <header class="card-head">
+        <div class="who">
+          <h2 class="name"></h2>
+          <p class="meta"></p>
+        </div>
+        <span class="prio"></span>
+      </header>
+      <dl class="facts">
+        <div><dt>O que encontrei</dt><dd class="finding"></dd></div>
+        <div><dt>Oferecer</dt><dd class="offer"></dd></div>
+      </dl>
+      <p class="check"><b>Antes de enviar:</b> <span class="check-text"></span></p>
+      <div class="msg-wrap">
+        <p class="msg"></p>
+        <div class="msg-editor" hidden>
+          <textarea class="msg-edit" aria-label="Editar mensagem"></textarea>
+          <div class="edit-actions">
+            <button class="btn small save-msg" type="button">Salvar mensagem</button>
+            <button class="btn small cancel-msg" type="button">Cancelar</button>
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <a class="btn wa" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20.5l1.8-5.2A8.4 8.4 0 1 1 21 11.5Z"/></svg>
+          Abrir no WhatsApp
+        </a>
+        <button class="btn copy-msg" type="button">Copiar mensagem</button>
+        <button class="btn edit-msg" type="button">Editar</button>
+      </div>
+      <div class="after-send" hidden>
+        <span>Enviou?</span>
+        <button class="btn small mark-sent" type="button">Marcar como enviada</button>
+      </div>
+      <div class="contact">
+        <span>WhatsApp <span class="phone"></span></span>
+        <button class="linkbtn copy-phone" type="button">copiar número</button>
+        <span class="links"></span>
+      </div>
+      <div class="followup" hidden>
+        <p class="followup-text"></p>
+        <div class="row">
+          <a class="btn small wa followup-wa" target="_blank" rel="noopener">Mandar retorno no WhatsApp</a>
+          <button class="btn small copy-followup" type="button">Copiar retorno</button>
+        </div>
+      </div>
+      <div class="track">
+        <label class="field status-field">Status
+          <select class="status-select"></select>
+        </label>
+        <label class="field notes-field">Anotações
+          <textarea class="notes" rows="1" placeholder="Ex.: falei com o dono, pediu para chamar em dezembro"></textarea>
+        </label>
+      </div>
+      <p class="sent-info" hidden></p>
+      <p class="err card-err" hidden></p>
+    </article>
+  </template>
+</body>
+</html>

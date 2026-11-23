@@ -2,7 +2,7 @@
 
 Site pessoal de **Saymon Oliveira de Castro**, desenvolvedor Full Stack — portfólio e canal de contato para projetos freelance.
 
-Bilíngue (português em `/`, inglês em `/en`), 100% estático e publicado na Cloudflare.
+Bilíngue (português em `/`, inglês em `/en`), estático e publicado na Cloudflare. A única parte com servidor é a área privada `/admin`, com a lista de prospecção.
 
 ## Tecnologias
 
@@ -110,6 +110,31 @@ Substitua `src/assets/images/saymon.jpg` mantendo o nome. Use uma imagem quadrad
 
 **Imagem de compartilhamento.** `/og.png` e `/en/og.png` são geradas no build a partir de `src/lib/og-image.tsx`, com a foto e o título de cada idioma.
 
+## Área privada (`/admin`)
+
+Lista de prospecção: empresas da região, o que foi encontrado em cada uma, a mensagem pronta para o WhatsApp e o andamento de cada contato. Só o dono do site entra.
+
+**Como funciona.**
+
+- `worker/index.js` só roda em `/admin` e `/admin/*` (`run_worker_first` em [`wrangler.jsonc`](wrangler.jsonc)). O resto do site continua servido direto dos arquivos.
+- O login é do **Cloudflare Access**. O Worker confere a assinatura do token que o Access envia em cada requisição (`Cf-Access-Jwt-Assertion`). Enquanto `ACCESS_TEAM_DOMAIN` e `ACCESS_AUD` estiverem vazios, `/admin` responde “Área em configuração” para todo mundo.
+- Os dados ficam no banco D1 `saymon-admin` (binding `DB`). **Nunca coloque empresas ou anotações no repositório**: ele é público. Aqui vai só a estrutura, em `migrations/`.
+- A página (`public/admin/`) usa CSS e JS em arquivos próprios, porque a CSP do site (`public/_headers`) não aceita `<style>` dentro do HTML.
+
+**Ativar o login (uma vez).**
+
+1. No painel da Cloudflare, abra **Zero Trust** e crie a organização: escolha um nome de time e o plano **Free** (a Cloudflare pede um cartão, mas não cobra).
+2. Em **Access controls → Applications**, crie uma aplicação **Self-hosted and private** com o destino `saymonthedev.com/admin`.
+3. Na política, use **Allow** e inclua o seu e-mail (seletor *Emails*). O login padrão é com a conta da Cloudflare; dá para adicionar código por e-mail (*One-time PIN*) em **Integrations → Identity providers**.
+4. Copie o **Application Audience (AUD) Tag** da aplicação e o endereço do time (`https://<time>.cloudflareaccess.com`) para `ACCESS_AUD` e `ACCESS_TEAM_DOMAIN` em `wrangler.jsonc`, e publique.
+
+**Comandos úteis.**
+
+```bash
+npx wrangler d1 migrations apply saymon-admin --remote   # aplica mudanças de estrutura
+npx wrangler d1 execute saymon-admin --remote --command "SELECT name, status FROM leads ORDER BY sort_order"
+```
+
 ## Acessibilidade e desempenho
 
 - HTML semântico, um `h1` por página, navegação completa por teclado e foco visível.
@@ -147,6 +172,9 @@ src/
   assets/              foto, capturas dos projetos e fontes da imagem de compartilhamento
 scripts/               otimização de imagens e geração de ícones
 public/                bandeiras, ícones do app e _headers (cabeçalhos da Cloudflare)
+  admin/               página da área privada /admin (HTML, CSS e JS)
+worker/                Worker da área privada: login do Access e API da lista
+migrations/            estrutura do banco D1 da área privada (sem dados)
 ```
 
 ## Créditos
