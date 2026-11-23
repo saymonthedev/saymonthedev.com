@@ -2,29 +2,23 @@ import type { Dictionary } from "./pt-BR";
 
 export const en: Dictionary = {
   meta: {
-    title: "Saymon Oliveira de Castro · Freelance Full Stack Developer",
+    title: "Websites & online booking in Jaraguá do Sul, Brazil · Saymon",
     description:
-      "Freelance Full Stack developer based in Jaraguá do Sul, Brazil. I build websites, web apps, APIs, dashboards, automations and AI-powered solutions.",
-    ogAlt: "Saymon Oliveira de Castro, Full Stack developer",
+      "Websites and online booking for service businesses in Jaraguá do Sul (SC), Brazil, and the surrounding region. Business websites from R$ 1,500, with direct support on WhatsApp.",
+    ogAlt: "Saymon Oliveira de Castro, websites and online booking in Jaraguá do Sul",
     /** Linha de serviços na imagem de compartilhamento. */
-    ogTags: ["Websites", "Web apps", "APIs", "Dashboards", "Automations", "AI"],
+    ogTags: ["Websites", "Online booking", "Custom systems"],
     keywords: [
-      "full stack developer",
-      "freelance developer",
       "website development",
+      "website design Jaraguá do Sul",
+      "small business website",
+      "online booking",
+      "appointment scheduling system",
       "landing page",
-      "web applications",
-      "SaaS",
-      "API development",
-      "dashboards",
-      "process automation",
-      "artificial intelligence",
-      "Next.js",
-      "React",
-      "Java",
-      "Spring Boot",
-      "Python",
-      "Django",
+      "management system",
+      "developer in Jaraguá do Sul",
+      "freelance developer",
+      "full stack developer",
     ],
   },
 
@@ -38,8 +32,7 @@ export const en: Dictionary = {
     contact: "contact",
   },
 
-  whatsappMessage:
-    "Hi Saymon! I came across your portfolio and would like to talk about a project.",
+  whatsappMessage: "Hi Saymon! I saw your website and would like to get a quote.",
 
   a11y: {
     skipToContent: "Skip to content",
@@ -60,31 +53,31 @@ export const en: Dictionary = {
     services: "Services",
     about: "About",
     stack: "Stack",
-    projects: "Projects",
-    process: "Process",
+    projects: "Work",
+    process: "How it works",
     contact: "Contact",
-    cta: "Let's talk",
+    cta: "Get a quote",
   },
 
   hero: {
-    availability: "Available for freelance projects",
-    headline: "I turn ideas into",
-    headlineAccent: "digital solutions.",
-    lead: "I'm Saymon Oliveira de Castro, a freelance Full Stack developer based in Jaraguá do Sul, Brazil. I build modern applications, smart systems and digital experiences that bring together performance, design and software engineering.",
-    primaryCta: "Let's build your project",
+    availability: "Serving Jaraguá do Sul and the region",
+    headline: "Websites and online booking for",
+    headlineAccent: "service businesses.",
+    lead: "I'm Saymon, a developer based in Jaraguá do Sul, Brazil. I build the website that sends customers straight to your WhatsApp and the schedule that organizes your appointments on your phone, with open slots at a glance and no double bookings.",
+    primaryCta: "Get a quote on WhatsApp",
     secondaryCta: "See my work",
     note: "You talk directly to me, no middlemen.",
-    scroll: "Scroll to explore",
+    scroll: "Scroll to see my work",
     card: {
       photoAlt: "Photo of Saymon Oliveira de Castro in a suit and blue tie",
       rows: {
-        role: "Role",
+        role: "Specialty",
         base: "Based in",
         status: "Status",
         languages: "Languages",
       },
       timeLabel: "Brasília time",
-      roleValue: "Full Stack",
+      roleValue: "Websites & booking",
       baseValue: "Jaraguá do Sul, BR",
       statusValue: "Open to projects",
       languagesValue: "PT · EN",
@@ -92,71 +85,53 @@ export const en: Dictionary = {
   },
 
   services: {
-    eyebrow: "Services",
-    title: "Digital solutions built",
-    titleAccent: "around your business.",
+    eyebrow: "Services & pricing",
+    title: "What I do",
+    titleAccent: "and what it costs.",
     intro:
-      "Every project starts with understanding what you need to solve. From there, I build the right solution for where your business is today: well made, clear and ready to grow.",
+      "Reference prices so you have an idea before we talk. The final price depends on what your business needs, and you get the quote in writing before any work starts.",
     idealFor: "Great for",
     items: [
       {
-        id: "sites",
-        title: "Websites & Landing Pages",
+        id: "site",
+        title: "Business website",
+        price: { from: "from", value: "R$ 1,500" },
         description:
-          "Modern, fast and responsive pages that present your brand clearly and turn visitors into real opportunities.",
-        tags: ["Presenting your company", "Launching a product", "Generating leads"],
+          "A fast page that looks great on phones, with your services, photos of your work and a button straight to WhatsApp. Set up for Google, so people looking for your service in town can find you.",
+        tags: ["Businesses with only Instagram", "An old or broken website", "Getting quote requests"],
       },
       {
-        id: "saas",
-        title: "Web Apps & SaaS",
+        id: "agenda",
+        title: "Website + online booking",
+        highlight: "My specialty",
+        price: { from: "from", value: "R$ 3,000", extra: "+ R$ 149/month" },
         description:
-          "Custom applications, admin panels and complete platforms, built on a solid foundation that keeps up as your business grows.",
-        tags: ["Digital products", "Customer portals", "Online operations"],
+          "The website plus a schedule on your phone, with open slots at a glance, no double bookings and confirmations on WhatsApp. If it makes sense, customers can book on their own through the site. The monthly fee covers hosting, maintenance and support.",
+        tags: ["Installation & maintenance", "Barbershops & beauty", "Appointment-based services"],
       },
       {
-        id: "apis",
-        title: "API Development",
+        id: "custom",
+        title: "Custom system",
+        price: { value: "Custom quote" },
         description:
-          "The layer that securely connects your apps, systems and partners: integrations, user sign-in and well-organized business rules.",
-        tags: ["Connecting systems", "Mobile & web apps", "Secure access"],
-      },
-      {
-        id: "dashboards",
-        title: "Dashboards & Management Systems",
-        description:
-          "Your information in one place, on clear screens that make day-to-day tracking easier and help you make better decisions.",
-        tags: ["KPIs", "Internal control", "Reports"],
-      },
-      {
-        id: "automation",
-        title: "Automations & Integrations",
-        description:
-          "Tools that cut down manual, repetitive work and let your systems exchange information on their own, with fewer errors and more time for what matters.",
-        tags: ["Less rework", "Synced data", "Faster processes"],
-      },
-      {
-        id: "ai",
-        title: "AI-Powered Solutions",
-        description:
-          "AI features built into your product or daily routine, such as assistants, text and document analysis, and smarter workflows.",
-        tags: ["Virtual assistants", "Documents", "Customer support"],
+          "For when spreadsheets and WhatsApp can't keep up anymore: jobs, orders, quotes and your team in one place, with separate access for each employee. Like the Stainhaus system.",
+        tags: ["Stone & woodworking shops", "Field teams", "Order tracking"],
       },
     ],
     cta: {
-      text: "Facing a different challenge? Let's talk it through.",
+      text: "Need something else, like an online store, an automation or an integration? Tell me about it.",
       button: "Tell me about your project",
     },
   },
 
   about: {
     eyebrow: "About me",
-    title: "Autonomy to solve problems,",
-    titleAccent: "care to build things right.",
+    title: "A local developer,",
+    titleAccent: "from Jaraguá do Sul.",
     paragraphs: [
-      "I'm a Full Stack developer, and I enjoy watching an idea become something that truly works. I'm drawn to complex problems and to the details that set a well-built solution apart from an ordinary one: clean code, tests, architecture and a good experience for the people using it.",
-      "I studied Systems Development through the CentroWEG program, in partnership with SENAI in Jaraguá do Sul, from 2023 to 2025, and I am now studying Software Engineering at Católica SC. Professionally, I work at WEG Drives & Controls, in the quality department of WEG Automação, where I'm the only developer in my section.",
-      "That responsibility calls for real autonomy: understanding each need, proposing a path forward and owning the solution. My day-to-day experience spans frontend, backend, process automation, systems integration and infrastructure.",
-      "I bring the same approach to freelance work: clear communication, initiative and a commitment to quality in every delivery.",
+      "I'm Saymon. I like taking whatever is a hassle in a business today, like a paper appointment book or orders lost in WhatsApp chats, and turning it into something simple to use.",
+      "I studied Systems Development through the CentroWEG program, in partnership with SENAI in Jaraguá do Sul, and I'm now studying Software Engineering at Católica SC. I work as a developer at WEG Drives & Controls, where I'm the only developer in my section: I understand the need, propose a path and own the solution.",
+      "Freelance work is no different: you talk directly to me, from first contact to delivery.",
     ],
     timelineTitle: "Journey",
     timeline: [
@@ -179,36 +154,36 @@ export const en: Dictionary = {
       {
         period: "Alongside",
         title: "Freelance projects",
-        place: "Websites, systems and custom solutions for companies and entrepreneurs",
+        place: "Websites, online booking and systems for businesses in the region",
       },
     ],
     award: {
       eyebrow: "Recognition · 2025",
       title: "Quick Kaizen standout at WEG's Kaizen Olympics",
-      text: "I was recognized as a standout for Factory VIII in the Quick Kaizen category, with the project “Rota WMR – Fluxo Axial”. The category honors fast, practical improvements proposed and implemented by the people who work with the process every day, as part of WEG's continuous improvement system.",
+      text: "Standout for Factory VIII in the Quick Kaizen category, with the project “Rota WMR – Fluxo Axial”. The category honors practical improvements implemented by the people who live the process every day. It's the same mindset I bring to your business.",
       tags: ["Quick Kaizen", "Factory VIII", "Continuous improvement"],
       schema: "Quick Kaizen category standout — WEG Kaizen Olympics 2025",
     },
     traits: [
       {
-        id: "proactive",
-        title: "Initiative",
-        text: "I like taking on complex problems and finding the best way to solve them before they grow.",
+        id: "direct",
+        title: "Straight to me",
+        text: "No call center and no middlemen: the person you talk to is the person doing the work.",
       },
       {
-        id: "quality",
-        title: "Quality",
-        text: "Clean code, tests and good practices are part of the process, not an extra.",
+        id: "custom",
+        title: "Made for your business",
+        text: "No templates: each website is designed for your brand, and the schedule follows the rules of how you work.",
       },
       {
-        id: "fullstack",
-        title: "The full picture",
-        text: "Frontend, backend, automation and infrastructure: I understand how every piece fits together.",
+        id: "mobile",
+        title: "Built for phones",
+        text: "Tested on phones, where your customers will open it, and light even on 4G.",
       },
       {
-        id: "languages",
-        title: "Languages",
-        text: "Native Portuguese and intermediate English.",
+        id: "local",
+        title: "From the region",
+        text: "I'm from Jaraguá do Sul and work with businesses in the city and the surrounding region.",
       },
     ],
   },
@@ -254,11 +229,11 @@ export const en: Dictionary = {
   },
 
   projects: {
-    eyebrow: "Projects",
-    title: "Selected",
-    titleAccent: "work.",
+    eyebrow: "Portfolio",
+    title: "Work",
+    titleAccent: "that's already live.",
     intro:
-      "Much of what I build professionally is internal and confidential. That's why you'll only find public projects here, cleared for sharing.",
+      "Clients from Jaraguá do Sul and concept projects that show what's possible for your business. Everything is live: open it and try it.",
     labels: {
       repo: "View repository",
       live: "Visit website",
@@ -270,44 +245,43 @@ export const en: Dictionary = {
       mobilePreview: "mobile version",
     },
     more: {
-      title: "More projects on the way",
-      text: "New work shows up here as soon as it's finished and cleared for sharing. In the meantime, my public repositories are on GitHub.",
-      cta: "View GitHub profile",
+      title: "Yours could be next",
+      text: "Tell me how your business handles customers today and I'll tell you what makes sense to build, and what it costs.",
+      cta: "Chat on WhatsApp",
     },
   },
 
   process: {
-    eyebrow: "How I work",
-    title: "A simple process,",
-    titleAccent: "from first contact to delivery.",
-    intro:
-      "Transparency at every step, so you always know what's being built and why.",
+    eyebrow: "How it works",
+    title: "From first contact",
+    titleAccent: "to going live.",
+    intro: "No hassle and no jargon: you know what will be built, what it costs and when it'll be ready.",
     steps: [
       {
-        title: "Discovery",
-        text: "We talk about your idea, the problem it solves and the goals you want to reach.",
+        title: "Conversation",
+        text: "Tell me how you handle customers today and what's slowing you down. Text, voice message or a call all work.",
       },
       {
-        title: "Planning",
-        text: "Together we define the solution, the scope and the priorities, so everything is clear before work begins.",
+        title: "Proposal",
+        text: "I send you in writing what will be built, the timeline and the price. Work only starts once you approve.",
       },
       {
         title: "Development",
-        text: "I build the application with a focus on quality, organization and communication, and you follow along as it evolves.",
+        text: "You follow along as it takes shape and test everything before it goes live.",
       },
       {
-        title: "Delivery",
-        text: "We run the necessary checks and get the solution ready to be used.",
+        title: "Launch",
+        text: "I put it live and show you how to use it. On monthly plans, support continues after launch.",
       },
     ],
-    note: "Timelines and pricing are agreed on together, once we understand the project's scope.",
+    note: "Quotes come with no commitment: you only decide once you know exactly what you're getting.",
   },
 
   contact: {
     eyebrow: "Contact",
-    title: "Got an idea?",
-    titleAccent: "Let's make it real.",
-    text: "Whether you need a website, a system or a custom solution, let's talk about what we can build together.",
+    title: "Tell me how your business",
+    titleAccent: "handles customers today.",
+    text: "In a quick WhatsApp chat I'll tell you what makes sense for your business and what it costs. No strings attached.",
     primary: "Chat on WhatsApp",
     channels: {
       whatsapp: "WhatsApp",
@@ -316,45 +290,36 @@ export const en: Dictionary = {
       linkedin: "LinkedIn",
     },
     form: {
-      title: "Share your idea",
+      title: "Get started",
       description:
         "Fill in the fields and your message opens ready to go in WhatsApp or your email app, so you can review it before sending.",
       name: "Your name",
       namePlaceholder: "What should I call you?",
-      type: "Project type",
+      type: "What you need",
       optional: "optional",
-      types: [
-        "Website or landing page",
-        "Web app or SaaS",
-        "API",
-        "Dashboard",
-        "Automation",
-        "Artificial intelligence",
-        "Something else",
-      ],
-      message: "About the project",
-      messagePlaceholder: "Tell me briefly what you need.",
+      types: ["Business website", "Website + online booking", "Custom system", "Something else"],
+      message: "About your business",
+      messagePlaceholder: "Tell me briefly what your business does and what you need.",
       sendWhatsapp: "Send via WhatsApp",
       sendEmail: "Send via email",
       errors: {
         name: "Please enter your name.",
-        message: "Tell me a little more about the project (at least 10 characters).",
+        message: "Tell me a little more (at least 10 characters).",
       },
       openedWhatsapp: "WhatsApp opened in a new tab with your message.",
       openedEmail: "Your email app opened with the message ready.",
       template: {
         greeting: "Hi Saymon! My name is {name}.",
-        intro: "I came across your portfolio and would like to talk about a project.",
-        type: "Project type: {type}",
-        subject: "Project — {name}",
+        intro: "I saw your website and would like to get a quote.",
+        type: "What I need: {type}",
+        subject: "Quote — {name}",
       },
     },
   },
 
   footer: {
     role: "Full Stack Developer",
-    description:
-      "Custom websites, systems and digital solutions, built with care from first contact to delivery.",
+    description: "Websites and online booking for service businesses in Jaraguá do Sul and the region.",
     navTitle: "Navigation",
     socialTitle: "Social",
     contactTitle: "Contact",

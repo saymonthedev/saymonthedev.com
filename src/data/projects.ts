@@ -44,19 +44,205 @@ export type Project = {
  * Para adicionar um projeto: coloque as capturas em src/assets/projects/,
  * importe-as acima e acrescente um item a esta lista. O layout se adapta à
  * quantidade de projetos publicados.
+ *
+ * A ordem é a de quem procura um site para a empresa: clientes reais primeiro,
+ * depois os projetos conceituais e, por último, os projetos pessoais. Os
+ * destaques falam do que o cliente ganha; as tecnologias ficam nos selos.
  */
 export const projects: Project[] = [
+  {
+    slug: "orts-climatizacao",
+    title: "ORTS Climatização",
+    published: true,
+    year: "2026",
+    badge: {
+      "pt-BR": "Cliente em destaque",
+      en: "Featured client",
+    },
+    kind: {
+      "pt-BR": "Cliente · Site e agenda de atendimentos",
+      en: "Client project · Website and appointment schedule",
+    },
+    description: {
+      "pt-BR":
+        "Site e agenda de atendimentos da ORTS Climatização, de Jaraguá do Sul (SC). O site mostra os serviços e os trabalhos reais da empresa e leva o cliente direto ao WhatsApp. A agenda, que o dono usa no celular, organiza as instalações e manutenções por dia, semana e mês.",
+      en: "Website and appointment schedule for ORTS Climatização, an HVAC company in Jaraguá do Sul, Brazil. The site shows the company's services and real work and sends customers straight to WhatsApp. The schedule, which the owner uses on their phone, organizes installations and maintenance visits by day, week and month.",
+    },
+    highlights: {
+      "pt-BR": [
+        "O cliente vê os serviços e fotos de trabalhos reais e chama no WhatsApp com um toque",
+        "Agenda no celular do dono, com os horários livres na hora e nada marcado em dobro",
+        "Considera expediente, pausas e o tempo de deslocamento entre um cliente e outro",
+        "Logo redesenhada em alta qualidade, com variações e paleta de cores própria",
+      ],
+      en: [
+        "Customers see the services and photos of real work, and reach out on WhatsApp in one tap",
+        "A schedule on the owner's phone, with open slots at a glance and no double bookings",
+        "Accounts for working hours, breaks and travel time between one customer and the next",
+        "Logo redrawn in high quality, with variations and its own color palette",
+      ],
+    },
+    stack: [
+      { name: "Next.js", logo: "nextjs" },
+      { name: "TypeScript", logo: "typescript" },
+      { name: "Node.js", logo: "nodejs" },
+      { name: "PostgreSQL", logo: "postgresql" },
+      { name: "Tailwind CSS", logo: "tailwind" },
+    ],
+    images: {
+      desktop: ortsDesktop,
+      mobile: ortsMobile,
+      alt: {
+        "pt-BR": "Site institucional da ORTS Climatização e, no celular, a agenda do painel administrativo com dados fictícios",
+        en: "ORTS Climatização website and, on mobile, the admin scheduling dashboard with fictional data",
+      },
+    },
+    repoUrl: "https://github.com/saymonthedev/agenda-orts-climatizacao",
+    liveUrl: "https://ortsclimatizacao.com.br",
+  },
+  {
+    slug: "stainhaus",
+    title: "Stainhaus",
+    published: true,
+    year: "2026",
+    kind: {
+      "pt-BR": "Cliente · Sistema de gestão",
+      en: "Client project · Management system",
+    },
+    description: {
+      "pt-BR":
+        "Sistema de gestão sob medida para a Stainhaus Marmoraria, de Jaraguá do Sul (SC): cada obra acompanhada da medição à instalação, com clientes, tarefas, agenda de medições e entregas e uma equipe em que cada um tem o seu acesso.",
+      en: "Custom management system for Stainhaus Marmoraria, a stone shop in Jaraguá do Sul, Brazil: every job tracked from measuring to installation, with customers, tasks, a schedule of site visits and deliveries, and a team where everyone has their own access.",
+    },
+    highlights: {
+      "pt-BR": [
+        "Cada obra segue as etapas reais da produção: orçamento, medição, corte, acabamento e instalação",
+        "Agenda de medições e entregas ligada às obras, por dia, semana e mês",
+        "Cada colaborador vê só o que precisa, com permissões por pessoa",
+        "Tem demonstração aberta: entre e teste o sistema com dados fictícios",
+      ],
+      en: [
+        "Every job follows the real production stages: quote, measuring, cutting, finishing and installation",
+        "A schedule of site visits and deliveries tied to each job, by day, week and month",
+        "Each employee sees only what they need, with per-person permissions",
+        "There's an open demo: log in and try the system with fictional data",
+      ],
+    },
+    stack: [
+      { name: "Next.js", logo: "nextjs" },
+      { name: "TypeScript", logo: "typescript" },
+      { name: "PostgreSQL", logo: "postgresql" },
+      { name: "Prisma", logo: "prisma" },
+      { name: "Tailwind CSS", logo: "tailwind" },
+    ],
+    images: {
+      desktop: stainhausDesktop,
+      mobile: stainhausMobile,
+      alt: {
+        "pt-BR": "Telas do sistema de gestão da Stainhaus Marmoraria, com dados fictícios",
+        en: "Screens from the Stainhaus Marmoraria management system, with fictional data",
+      },
+    },
+    repoUrl: "https://github.com/saymonthedev/agenda-marmoraria",
+    liveUrl: "https://agenda-marmoraria-stainhaus.vercel.app",
+  },
+  {
+    slug: "barbearia-cobre",
+    title: "Barbearia Cobre",
+    published: true,
+    year: "2026",
+    kind: {
+      "pt-BR": "Projeto conceitual · Site com agendamento online",
+      en: "Concept project · Website with online booking",
+    },
+    description: {
+      "pt-BR":
+        "Site para uma barbearia fictícia em que o cliente marca o horário sozinho: escolhe o serviço, o profissional, o dia e o horário, e a confirmação sai pronta para o WhatsApp.",
+      en: "Website for a fictional barbershop where customers book on their own: they pick a service, a barber, a day and a time, and the confirmation is ready to send on WhatsApp.",
+    },
+    highlights: {
+      "pt-BR": [
+        "O cliente marca sozinho, a qualquer hora, sem esperar alguém responder",
+        "Mostra o próximo horário livre e reserva com um toque",
+        "A confirmação sai pronta para enviar pelo WhatsApp",
+        "Visual com a cara da barbearia: espelho, letreiro, comanda e placa",
+      ],
+      en: [
+        "Customers book on their own, any time, without waiting for a reply",
+        "Shows the next open slot and books it in one tap",
+        "The confirmation is ready to send on WhatsApp",
+        "A look that feels like the shop itself: mirror, letter board, ticket and sign",
+      ],
+    },
+    stack: [
+      { name: "Next.js", logo: "nextjs" },
+      { name: "React", logo: "react" },
+      { name: "TypeScript", logo: "typescript" },
+      { name: "Tailwind CSS", logo: "tailwind" },
+    ],
+    images: {
+      desktop: cobreDesktop,
+      mobile: cobreMobile,
+      alt: {
+        "pt-BR": "Captura de tela do site da Barbearia Cobre, projeto conceitual",
+        en: "Screenshot of the Barbearia Cobre concept website",
+      },
+    },
+    repoUrl: "https://github.com/saymonthedev/barbearia-cobre",
+    liveUrl: "https://barbearia-cobre.vercel.app",
+  },
+  {
+    slug: "crosta",
+    title: "Crosta",
+    published: true,
+    year: "2026",
+    kind: {
+      "pt-BR": "Projeto conceitual · Cardápio e pedido online",
+      en: "Concept project · Online menu and ordering",
+    },
+    description: {
+      "pt-BR":
+        "Cardápio e pedido online para uma hamburgueria fictícia: o cliente monta o lanche camada por camada, vê o preço na hora e fecha o pedido pelo WhatsApp, para entrega ou retirada.",
+      en: "Online menu and ordering for a fictional burger joint: customers build their burger layer by layer, see the price right away and send the order on WhatsApp, for delivery or pickup.",
+    },
+    highlights: {
+      "pt-BR": [
+        "O cliente monta o burger camada por camada e vê o preço na hora",
+        "O pedido chega organizado no WhatsApp, sem ida e volta de mensagens",
+        "Horário de funcionamento, taxa por bairro, agendamento e cupom funcionando de verdade",
+        "Comanda que separa os itens por estação da cozinha",
+      ],
+      en: [
+        "Customers build their burger layer by layer and see the price right away",
+        "Orders arrive organized on WhatsApp, with no back-and-forth",
+        "Opening hours, delivery fees by neighborhood, scheduling and a coupon that really work",
+        "A ticket that splits items by kitchen station",
+      ],
+    },
+    stack: [
+      { name: "Next.js", logo: "nextjs" },
+      { name: "React", logo: "react" },
+      { name: "TypeScript", logo: "typescript" },
+      { name: "Tailwind CSS", logo: "tailwind" },
+    ],
+    images: {
+      desktop: crostaDesktop,
+      mobile: crostaMobile,
+      alt: {
+        "pt-BR": "Captura de tela do site da Crosta, projeto conceitual de hamburgueria",
+        en: "Screenshot of the Crosta burger joint concept website",
+      },
+    },
+    repoUrl: "https://github.com/saymonthedev/crosta",
+    liveUrl: "https://crosta-smash.vercel.app",
+  },
   {
     slug: "dominio-politico",
     title: "Domínio Político",
     published: true,
     year: "2026",
-    badge: {
-      "pt-BR": "Projeto em destaque",
-      en: "Featured project",
-    },
     kind: {
-      "pt-BR": "Projeto autoral · Jogo de navegador",
+      "pt-BR": "Projeto pessoal · Jogo de navegador",
       en: "Personal project · Browser game",
     },
     description: {
@@ -96,191 +282,11 @@ export const projects: Project[] = [
     liveUrl: "https://dominio-politico.com.br",
   },
   {
-    slug: "orts-climatizacao",
-    title: "ORTS Climatização",
-    published: true,
-    year: "2026",
-    kind: {
-      "pt-BR": "Cliente · Site institucional e sistema de agendamentos",
-      en: "Client project · Website and scheduling system",
-    },
-    description: {
-      "pt-BR":
-        "Site institucional e sistema privado de agendamentos para a ORTS Climatização, de Jaraguá do Sul (SC). O site apresenta os serviços e os trabalhos reais da empresa e leva o cliente direto ao WhatsApp; o painel, usado só pelo proprietário, organiza os atendimentos por dia, semana e mês, com as regras da agenda conferidas no servidor e no próprio banco de dados.",
-      en: "Website and private scheduling system for ORTS Climatização, an HVAC company in Jaraguá do Sul, Brazil. The site presents the company's services and real work and sends customers straight to WhatsApp; the dashboard, used only by the owner, organizes appointments by day, week and month, with scheduling rules enforced on the server and in the database itself.",
-    },
-    highlights: {
-      "pt-BR": [
-        "Identidade visual criada a partir da logo: símbolo vetorizado, variações e paleta própria",
-        "Agenda com expediente, pausas, tempo de deslocamento e encaixes configuráveis, e conflitos barrados no PostgreSQL",
-        "Painel pensado para o celular: horários livres em tempo real, confirmação pelo WhatsApp e rota até o cliente",
-        "68 testes automatizados, acessibilidade 100 no Lighthouse e componentes feitos do zero, sem controles padrão do navegador",
-      ],
-      en: [
-        "Visual identity built from the logo: a vectorized mark, variations and its own palette",
-        "Scheduling with configurable hours, breaks, travel time and walk-ins, with conflicts blocked in PostgreSQL",
-        "Mobile-first dashboard: live open slots, WhatsApp confirmations and directions to each customer",
-        "68 automated tests, a 100 accessibility score on Lighthouse and components built from scratch, with no default browser widgets",
-      ],
-    },
-    stack: [
-      { name: "Next.js", logo: "nextjs" },
-      { name: "TypeScript", logo: "typescript" },
-      { name: "Node.js", logo: "nodejs" },
-      { name: "PostgreSQL", logo: "postgresql" },
-      { name: "Tailwind CSS", logo: "tailwind" },
-    ],
-    images: {
-      desktop: ortsDesktop,
-      mobile: ortsMobile,
-      alt: {
-        "pt-BR": "Site institucional da ORTS Climatização e, no celular, a agenda do painel administrativo com dados fictícios",
-        en: "ORTS Climatização website and, on mobile, the admin scheduling dashboard with fictional data",
-      },
-    },
-    repoUrl: "https://github.com/saymonthedev/agenda-orts-climatizacao",
-    liveUrl: "https://ortsclimatizacao.com.br",
-  },
-  {
-    slug: "stainhaus",
-    title: "Stainhaus",
-    published: true,
-    year: "2026",
-    kind: {
-      "pt-BR": "Cliente · Sistema de gestão",
-      en: "Client project · Management system",
-    },
-    description: {
-      "pt-BR":
-        "Sistema de gestão feito sob medida para a Stainhaus Marmoraria, de Jaraguá do Sul (SC): projetos da medição à instalação, clientes, tarefas, agenda de medições e entregas, equipe com permissões e o histórico de cada obra.",
-      en: "Custom management system for Stainhaus Marmoraria, a stone shop in Jaraguá do Sul, Brazil: projects from measuring to installation, customers, tasks, a schedule of site visits and deliveries, a team with permissions and the history of every job.",
-    },
-    highlights: {
-      "pt-BR": [
-        "Fluxo de etapas da produção real: orçamento, medição, corte, acabamento e instalação",
-        "Permissões por colaborador, conferidas no servidor em cada ação",
-        "Agenda por dia, semana e mês, ligada aos projetos, e histórico completo de cada obra",
-        "Modo demonstração público com dados fictícios, que volta ao estado inicial todo dia",
-      ],
-      en: [
-        "Stages that follow real production: quote, measuring, cutting, finishing and installation",
-        "Per-employee permissions, checked on the server for every action",
-        "Day, week and month schedule tied to projects, plus a full history of every job",
-        "Public demo mode with fictional data that resets every day",
-      ],
-    },
-    stack: [
-      { name: "Next.js", logo: "nextjs" },
-      { name: "TypeScript", logo: "typescript" },
-      { name: "PostgreSQL", logo: "postgresql" },
-      { name: "Prisma", logo: "prisma" },
-      { name: "Tailwind CSS", logo: "tailwind" },
-    ],
-    images: {
-      desktop: stainhausDesktop,
-      mobile: stainhausMobile,
-      alt: {
-        "pt-BR": "Telas do sistema de gestão da Stainhaus Marmoraria, com dados fictícios",
-        en: "Screens from the Stainhaus Marmoraria management system, with fictional data",
-      },
-    },
-    repoUrl: "https://github.com/saymonthedev/agenda-marmoraria",
-    liveUrl: "https://agenda-marmoraria-stainhaus.vercel.app",
-  },
-  {
-    slug: "crosta",
-    title: "Crosta",
-    published: true,
-    year: "2026",
-    kind: {
-      "pt-BR": "Projeto conceitual · Cardápio e pedido online",
-      en: "Concept project · Online menu and ordering",
-    },
-    description: {
-      "pt-BR":
-        "Cardápio e pedido online para uma hamburgueria fictícia de smash burger: o cliente monta o burger camada por camada, acompanha tudo numa comanda de papel térmico e fecha o pedido pelo WhatsApp, para entrega ou retirada.",
-      en: "Online menu and ordering for a fictional smash burger joint: customers build their burger layer by layer, follow everything on a thermal-paper ticket and send the order on WhatsApp, for delivery or pickup.",
-    },
-    highlights: {
-      "pt-BR": [
-        "Ficha técnica em SVG que desenha cada camada escolhida, com legenda e preço",
-        "Comanda que imprime os itens por estação da cozinha, com o checkout dentro do papel",
-        "Horário real de Brasília, agendamento, taxa por bairro, campanha e cupom com regras de verdade",
-        "68 testes de fluxo no navegador e Lighthouse 99 no desktop",
-      ],
-      en: [
-        "SVG spec sheet that draws every chosen layer, with labels and prices",
-        "A ticket that prints items by kitchen station, with checkout right on the paper",
-        "Real São Paulo opening hours, scheduling, delivery fees by area, a campaign and a coupon with real rules",
-        "68 end-to-end browser tests and a 99 desktop Lighthouse score",
-      ],
-    },
-    stack: [
-      { name: "Next.js", logo: "nextjs" },
-      { name: "React", logo: "react" },
-      { name: "TypeScript", logo: "typescript" },
-      { name: "Tailwind CSS", logo: "tailwind" },
-    ],
-    images: {
-      desktop: crostaDesktop,
-      mobile: crostaMobile,
-      alt: {
-        "pt-BR": "Captura de tela do site da Crosta, projeto conceitual de hamburgueria",
-        en: "Screenshot of the Crosta burger joint concept website",
-      },
-    },
-    repoUrl: "https://github.com/saymonthedev/crosta",
-    liveUrl: "https://crosta-smash.vercel.app",
-  },
-  {
-    slug: "barbearia-cobre",
-    title: "Barbearia Cobre",
-    published: true,
-    year: "2026",
-    kind: {
-      "pt-BR": "Projeto conceitual · Landing page e agendamento",
-      en: "Concept project · Landing page and booking",
-    },
-    description: {
-      "pt-BR":
-        "Site e landing page para uma barbearia fictícia, com agendamento online em uma comanda de papel: o cliente escolhe serviço, profissional, dia e horário, e a confirmação sai pronta para o WhatsApp.",
-      en: "Website and landing page for a fictional barbershop, with online booking on a paper ticket: customers pick a service, a barber, a day and a time, and the confirmation is ready to send on WhatsApp.",
-    },
-    highlights: {
-      "pt-BR": [
-        "Cada seção é um objeto da barbearia: espelho, letreiro de feltro, comanda, cartas e placa",
-        "Calendário, horários e formulários feitos do zero, sem componentes padrão do navegador",
-        "Próximo horário livre calculado na hora, com reserva em um toque",
-        "Acessibilidade 100 no Lighthouse e publicação contínua na Vercel",
-      ],
-      en: [
-        "Every section is an object from the shop: mirror, felt letter board, ticket, cards and sign",
-        "Calendar, time slots and forms built from scratch, with no default browser widgets",
-        "Next available slot computed live, bookable in one tap",
-        "100 accessibility score on Lighthouse and continuous deployment on Vercel",
-      ],
-    },
-    stack: [
-      { name: "Next.js", logo: "nextjs" },
-      { name: "React", logo: "react" },
-      { name: "TypeScript", logo: "typescript" },
-      { name: "Tailwind CSS", logo: "tailwind" },
-    ],
-    images: {
-      desktop: cobreDesktop,
-      mobile: cobreMobile,
-      alt: {
-        "pt-BR": "Captura de tela do site da Barbearia Cobre, projeto conceitual",
-        en: "Screenshot of the Barbearia Cobre concept website",
-      },
-    },
-    repoUrl: "https://github.com/saymonthedev/barbearia-cobre",
-    liveUrl: "https://barbearia-cobre.vercel.app",
-  },
-  {
     slug: "litoral-bordados",
     title: "Litoral Bordados",
-    published: true,
+    // Fora do site até o site da Litoral ter as fotos dos trabalhos e os
+    // canais de atendimento (hoje mostra "espaço reservado" no lugar deles).
+    published: false,
     year: "2026",
     kind: {
       "pt-BR": "Cliente · Landing page",

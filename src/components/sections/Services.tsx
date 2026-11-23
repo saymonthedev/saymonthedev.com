@@ -1,11 +1,12 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Sparkles } from "lucide-react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { serviceIcons } from "@/data/services";
 import { useSpotlight } from "@/hooks/useSpotlight";
 import { useI18n } from "@/i18n/LocaleProvider";
+import { cn } from "@/lib/cn";
 import { whatsappUrl } from "@/lib/links";
 import { revealDelay } from "@/lib/style";
 
@@ -33,14 +34,19 @@ export function Services() {
         <ul
           data-spotlight-group
           onPointerMove={onPointerMove}
-          className="mt-14 grid gap-4 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3"
+          className="mt-14 grid gap-4 lg:mt-16 lg:grid-cols-3"
         >
           {services.items.map((item, index) => {
             const Icon = serviceIcons[item.id];
             return (
               <li key={item.id} data-reveal style={revealDelay((index % 3) * 90)}>
-                <article className="spotlight surface group flex h-full flex-col rounded-[1.75rem] p-6 sm:p-7">
-                  <div className="flex items-start justify-between">
+                <article
+                  className={cn(
+                    "spotlight surface group flex h-full flex-col rounded-[1.75rem] p-6 sm:p-7",
+                    item.highlight && "ring-1 ring-accent-300/30",
+                  )}
+                >
+                  <div className="flex items-start justify-between gap-4">
                     <span className="relative grid size-12 place-items-center rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.09] to-white/[0.02] text-accent-200 shadow-[0_1px_0_0_rgb(255_255_255/0.08)_inset]">
                       <span
                         aria-hidden="true"
@@ -52,11 +58,29 @@ export function Services() {
                         className="relative size-[22px] transition-transform duration-700 ease-out-expo group-hover:-rotate-6 group-hover:scale-110"
                       />
                     </span>
-                    <span className="font-mono text-xs text-subtle">{String(index + 1).padStart(2, "0")}</span>
+                    {item.highlight ? (
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-accent-300/40 bg-accent-300/10 py-1 pr-3 pl-2.5 text-xs font-medium text-accent-200">
+                        <Sparkles aria-hidden="true" className="size-3.5" strokeWidth={2} />
+                        {item.highlight}
+                      </span>
+                    ) : (
+                      <span className="font-mono text-xs text-subtle">{String(index + 1).padStart(2, "0")}</span>
+                    )}
                   </div>
 
                   <h3 className="mt-8 text-[1.3rem] leading-snug font-semibold tracking-[-0.02em]">{item.title}</h3>
-                  <p className="mt-3 text-[15px] leading-relaxed text-muted">{item.description}</p>
+                  {/* Preço de referência: "a partir de" + valor + mensalidade, quando houver. */}
+                  <p className="mt-4 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                    {/* Os espaços entre os trechos só servem para a leitura em voz alta. */}
+                    {item.price.from && <span className="text-sm text-subtle">{item.price.from} </span>}
+                    <span className="text-[1.75rem] leading-none font-semibold tracking-[-0.03em] text-fg">
+                      {item.price.value}
+                    </span>
+                    {item.price.extra && (
+                      <span className="text-[15px] font-medium text-accent-200"> {item.price.extra}</span>
+                    )}
+                  </p>
+                  <p className="mt-4 text-[15px] leading-relaxed text-muted">{item.description}</p>
 
                   <div className="mt-auto pt-7">
                     <p className="font-mono text-[10.5px] tracking-[0.18em] text-subtle uppercase">

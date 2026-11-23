@@ -69,9 +69,10 @@ As rotas de [`wrangler.jsonc`](wrangler.jsonc) ligam `saymonthedev.com` e `www.s
 | --- | --- |
 | Contatos (WhatsApp, e-mail, GitHub, LinkedIn) | `src/config/site.ts` |
 | Todos os textos, nos dois idiomas | `src/i18n/dictionaries/pt-BR.ts` e `en.ts` |
+| Serviços e preços | `services.items` nos dois dicionários (ícones em `src/data/services.ts`) |
 | Projetos | `src/data/projects.ts` (+ capturas em `src/assets/projects/`) |
+| Ordem das seções | `src/components/HomePage.tsx` e `src/components/layout/nav.ts` |
 | Tecnologias | `src/data/technologies.ts` (logos em `src/data/brand-icons.ts`) |
-| Ícones dos serviços | `src/data/services.ts` |
 | Foto | `src/assets/images/saymon.jpg` |
 | Cores, fontes e animações | `src/app/globals.css` e `src/config/fonts.ts` |
 
@@ -82,9 +83,18 @@ O dicionário em inglês tem o mesmo tipo do português: se um texto faltar em u
 1. Salve as capturas reais em `src/assets/projects/` — a de computador deve ser a **página inteira** (a prévia percorre a imagem no hover); a de celular é opcional.
 2. Em `src/data/projects.ts`, importe as imagens e copie o item existente.
 3. `published: false` mantém o projeto fora do site até ser aprovado; `liveUrl` só deve ser preenchido com um endereço confirmado no ar.
-4. Para destacar um projeto, preencha `badge` (o selo, nos dois idiomas) e deixe-o em primeiro na lista: com um número ímpar de projetos, o primeiro ocupa a linha inteira. Hoje o destaque é o Domínio Político.
+4. Para destacar um projeto, preencha `badge` (o selo, nos dois idiomas) e deixe-o em primeiro na lista: com um número ímpar de projetos, o primeiro ocupa a linha inteira. Hoje o destaque é a ORTS Climatização.
+5. Escreva os destaques pensando em quem contrata (o que o cliente ganha), não em quem programa: as tecnologias já aparecem nos selos do cartão.
 
-O layout se adapta à quantidade de projetos: com um número ímpar, um cartão “Mais projetos a caminho” completa a grade.
+O layout se adapta à quantidade de projetos: com um número ímpar, um cartão “O próximo pode ser o seu”, com botão para o WhatsApp, completa a grade.
+
+A Litoral Bordados está com `published: false` até o site dela ter as fotos dos trabalhos e os canais de atendimento.
+
+### Página pensada para quem contrata
+
+A ordem das seções é: início, trabalhos, serviços e preços, como funciona, sobre e contato. Quem chega pelo link no WhatsApp vê trabalhos reais logo depois do topo e encontra preço de referência sem precisar perguntar.
+
+A seção de tecnologias (`src/components/sections/Stack.tsx`) está fora da página. Para voltar com ela, inclua `<Stack />` em `HomePage.tsx` e `"stack"` em `nav.ts`. Os nomes das tecnologias continuam nos dados estruturados (`src/lib/json-ld.ts`).
 
 ### Trocar a foto
 
@@ -126,7 +136,7 @@ src/
     globals.css        tema, utilitários e animações
   components/
     layout/            cabeçalho, menu mobile, seletor de idioma, rodapé
-    sections/          Hero, Serviços, Sobre, Tecnologias, Projetos, Processo, Contato
+    sections/          Hero, Projetos, Serviços, Processo, Sobre, Contato (e Tecnologias, fora da página)
     ui/                botões, monograma, logos, títulos de seção
     providers/         rolagem suave, revelação ao rolar, Motion
   config/              dados pessoais e fontes

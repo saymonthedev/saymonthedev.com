@@ -4,11 +4,11 @@ import {
   BookOpen,
   Briefcase,
   GraduationCap,
-  Languages,
-  Layers,
+  MapPin,
   Medal,
-  Rocket,
-  ShieldCheck,
+  MessageCircle,
+  PenTool,
+  Smartphone,
   Sparkles,
   type LucideIcon,
 } from "lucide-react";
@@ -17,11 +17,12 @@ import { useSpotlight } from "@/hooks/useSpotlight";
 import { useI18n } from "@/i18n/LocaleProvider";
 import { revealDelay } from "@/lib/style";
 
+/** Por que contratar: um ícone para cada item de `about.traits`. */
 const traitIcons: Record<string, LucideIcon> = {
-  proactive: Rocket,
-  quality: ShieldCheck,
-  fullstack: Layers,
-  languages: Languages,
+  direct: MessageCircle,
+  custom: PenTool,
+  mobile: Smartphone,
+  local: MapPin,
 };
 
 const timelineIcons: LucideIcon[] = [GraduationCap, BookOpen, Briefcase, Sparkles];

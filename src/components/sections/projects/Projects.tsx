@@ -1,14 +1,14 @@
 "use client";
 
-import { ArrowUpRight, Check, FolderGit2, Sparkles } from "lucide-react";
+import { ArrowUpRight, Check, MessageCircle, Sparkles } from "lucide-react";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { site } from "@/config/site";
 import { publishedProjects, type Project } from "@/data/projects";
 import { useSpotlight } from "@/hooks/useSpotlight";
 import { useI18n } from "@/i18n/LocaleProvider";
 import { cn } from "@/lib/cn";
+import { whatsappUrl } from "@/lib/links";
 import { revealDelay } from "@/lib/style";
 import { ProjectPreview } from "./ProjectPreview";
 
@@ -97,7 +97,8 @@ export function Projects() {
   const copy = dict.projects;
   const onPointerMove = useSpotlight<HTMLDivElement>();
   const projects = publishedProjects;
-  // Um card "mais projetos" completa a grade quando ela fica ímpar ou com um só item.
+  // Um card "o próximo pode ser o seu" completa a grade quando ela fica ímpar
+  // ou com um só item, e leva direto ao WhatsApp.
   const showMore = projects.length === 0 || projects.length % 2 === 1;
 
   return (
@@ -146,7 +147,7 @@ export function Projects() {
             >
               <div className="flex items-start gap-5">
                 <span className="grid size-12 shrink-0 place-items-center rounded-2xl border border-(--line-strong) bg-white/[0.03] text-accent-200">
-                  <FolderGit2 aria-hidden="true" className="size-5" strokeWidth={1.6} />
+                  <MessageCircle aria-hidden="true" className="size-5" strokeWidth={1.6} />
                 </span>
                 <div>
                   <h3 className="text-lg font-semibold tracking-tight">{copy.more.title}</h3>
@@ -154,10 +155,9 @@ export function Projects() {
                 </div>
               </div>
               <ButtonLink
-                href={site.github.url}
+                href={whatsappUrl(dict.whatsappMessage)}
                 external
-                variant="ghost"
-                leading={<BrandLogo name="github" tone="mono" className="size-4" />}
+                leading={<BrandLogo name="whatsapp" tone="mono" className="size-4" />}
                 icon={ArrowUpRight}
                 iconMotion="diag"
                 className="shrink-0"

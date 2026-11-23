@@ -142,7 +142,7 @@ export function Hero() {
       </div>
 
       <a
-        href={`#${dict.sections.services}`}
+        href={`#${dict.sections.projects}`}
         className="intro group absolute bottom-7 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 text-subtle transition-colors hover:text-soft md:flex"
         style={introDelay(1100)}
       >
