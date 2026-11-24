@@ -137,6 +137,14 @@ npx wrangler d1 migrations apply saymon-admin --remote   # aplica mudanças de e
 npx wrangler d1 execute saymon-admin --remote --command "SELECT name, status FROM leads ORDER BY sort_order"
 ```
 
+## Prévias para clientes (`/previa`)
+
+Página de apresentação feita para uma empresa avaliar antes de fechar, em `public/previa/<empresa>/`. O link vai só para a empresa: a prévia não aparece no site e fica fora da busca (`X-Robots-Tag` em `public/_headers` e `noindex` na página).
+
+- Cada prévia é autossuficiente: HTML, CSS e JS próprios (a CSP do site não aceita `<style>` nem fontes de fora), fontes e fotos na própria pasta.
+- `compartilhar.jpg` (1200×630, abaixo de 300 KB) é a imagem que aparece quando o link é mandado no WhatsApp.
+- Se a empresa não fechar, apague a pasta. Se fechar, o site de verdade ganha repositório próprio.
+
 ## Acessibilidade e desempenho
 
 - HTML semântico, um `h1` por página, navegação completa por teclado e foco visível.
@@ -175,6 +183,7 @@ src/
 scripts/               otimização de imagens e geração de ícones
 public/                bandeiras, ícones do app e _headers (cabeçalhos da Cloudflare)
   admin/               página da área privada /admin (HTML, CSS, JS e manifesto)
+  previa/              prévias de site para clientes avaliarem (fora da busca)
 worker/                Worker da área privada: login do Access e API da lista
 migrations/            estrutura do banco D1 da área privada (sem dados)
 ```
