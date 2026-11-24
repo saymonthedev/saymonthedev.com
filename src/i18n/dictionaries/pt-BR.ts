@@ -1,17 +1,27 @@
+/** Um serviço da seção de preços. Destaque e mensalidade são opcionais. */
+type ServiceItem = {
+  id: string;
+  title: string;
+  highlight?: string;
+  price: { from?: string; value: string; extra?: string };
+  description: string;
+  tags: string[];
+};
+
 export const ptBR = {
   meta: {
-    title: "Criação de sites e agenda online em Jaraguá do Sul · Saymon",
+    title: "Criação de sites e sistemas em Jaraguá do Sul · Saymon",
     description:
-      "Sites e agendas online para empresas de serviço de Jaraguá do Sul (SC) e região. Site profissional a partir de R$ 1.500, com atendimento direto pelo WhatsApp.",
-    ogAlt: "Saymon Oliveira de Castro, sites e agendas online em Jaraguá do Sul",
+      "Sites e sistemas sob medida para empresas de Jaraguá do Sul (SC) e região. Site profissional a partir de R$ 1.500, com atendimento direto pelo WhatsApp.",
+    ogAlt: "Saymon Oliveira de Castro, sites e sistemas em Jaraguá do Sul",
     /** Linha de serviços na imagem de compartilhamento. */
-    ogTags: ["Sites", "Agenda online", "Sistemas sob medida"],
+    ogTags: ["Sites profissionais", "Sistemas sob medida"],
     keywords: [
       "criação de sites",
       "criação de sites em Jaraguá do Sul",
       "site para empresa",
-      "agenda online",
-      "sistema de agendamento",
+      "site profissional",
+      "sistema sob medida",
       "landing page",
       "sistema de gestão",
       "desenvolvedor em Jaraguá do Sul",
@@ -60,9 +70,9 @@ export const ptBR = {
 
   hero: {
     availability: "Atendendo Jaraguá do Sul e região",
-    headline: "Sites e agendas online para",
-    headlineAccent: "empresas de serviço.",
-    lead: "Sou o Saymon, desenvolvedor de Jaraguá do Sul (SC). Faço o site que leva o cliente direto ao seu WhatsApp e a agenda que organiza seus atendimentos no celular, com os horários livres na hora e nada marcado em dobro.",
+    headline: "Sites e sistemas sob medida para",
+    headlineAccent: "empresas de Jaraguá e região.",
+    lead: "Sou o Saymon, desenvolvedor full stack de Jaraguá do Sul (SC). Faço o site que traz cliente pelo Google e leva direto ao seu WhatsApp e, quando a planilha não dá mais conta, o sistema que organiza o dia a dia da empresa.",
     primaryCta: "Pedir orçamento no WhatsApp",
     secondaryCta: "Ver trabalhos",
     note: "Conversa direta comigo, sem intermediários.",
@@ -76,7 +86,7 @@ export const ptBR = {
         languages: "Idiomas",
       },
       timeLabel: "Horário de Brasília",
-      roleValue: "Sites e agendas",
+      roleValue: "Sites e sistemas",
       baseValue: "Jaraguá do Sul, SC",
       statusValue: "Aberto a projetos",
       languagesValue: "PT · EN",
@@ -94,29 +104,21 @@ export const ptBR = {
       {
         id: "site",
         title: "Site profissional",
+        highlight: "Para começar",
         price: { from: "a partir de", value: "R$ 1.500" },
         description:
           "Uma página rápida e bonita no celular, com seus serviços, fotos dos seus trabalhos e botão direto para o WhatsApp. Preparada para o Google, para quem procura o seu serviço na cidade.",
         tags: ["Quem só tem Instagram", "Site antigo ou fora do ar", "Receber pedidos de orçamento"],
       },
       {
-        id: "agenda",
-        title: "Site + agenda online",
-        highlight: "Minha especialidade",
-        price: { from: "a partir de", value: "R$ 3.000", extra: "+ R$ 149/mês" },
-        description:
-          "O site e uma agenda no seu celular, com os horários livres na hora, nada marcado em dobro e confirmação pelo WhatsApp. Se fizer sentido, o cliente marca sozinho pelo site. A mensalidade cobre hospedagem, manutenção e suporte.",
-        tags: ["Instalação e manutenção", "Barbearias e estética", "Atendimento com hora marcada"],
-      },
-      {
         id: "custom",
         title: "Sistema sob medida",
         price: { value: "Sob orçamento" },
         description:
-          "Para quando a planilha e o WhatsApp não dão mais conta: obras, pedidos, orçamentos e equipe em um só lugar, com acesso separado para cada colaborador. Como o sistema da Stainhaus.",
-        tags: ["Marmorarias e marcenarias", "Equipes em campo", "Controle de pedidos"],
+          "Para quando a planilha e o WhatsApp não dão mais conta: agenda, orçamentos, pedidos, obras e equipe em um só lugar, com acesso separado para cada pessoa. Como o sistema da Stainhaus e a agenda da ORTS.",
+        tags: ["Agenda e orçamentos", "Obras e pedidos", "Equipes em campo"],
       },
-    ],
+    ] as ServiceItem[],
     cta: {
       text: "Precisa de outra coisa, como loja virtual, automação ou integração? Me conta o que é.",
       button: "Falar sobre meu projeto",
@@ -153,7 +155,7 @@ export const ptBR = {
       {
         period: "Em paralelo",
         title: "Projetos freelance",
-        place: "Sites, agendas online e sistemas para empresas da região",
+        place: "Sites e sistemas para empresas da região",
       },
     ],
     award: {
@@ -172,7 +174,7 @@ export const ptBR = {
       {
         id: "custom",
         title: "Feito para o seu negócio",
-        text: "Nada de template: cada site é desenhado para a sua marca, e a agenda segue as regras do seu atendimento.",
+        text: "Nada de template: cada site é desenhado para a sua marca, e cada sistema segue as regras do seu negócio.",
       },
       {
         id: "mobile",
@@ -249,7 +251,7 @@ export const ptBR = {
     },
     more: {
       title: "O próximo pode ser o seu",
-      text: "Me conta como funciona o atendimento da sua empresa hoje e eu te digo o que faz sentido fazer, e quanto custa.",
+      text: "Me conta o que a sua empresa precisa e eu te digo o que faz sentido fazer, e quanto custa.",
       cta: "Conversar no WhatsApp",
     },
   },
@@ -263,7 +265,7 @@ export const ptBR = {
     steps: [
       {
         title: "Conversa",
-        text: "Você me conta como funciona o seu atendimento hoje e o que está dando trabalho. Pode ser por mensagem, áudio ou ligação.",
+        text: "Você me conta o que a sua empresa faz e o que está precisando. Pode ser por mensagem, áudio ou ligação.",
       },
       {
         title: "Proposta",
@@ -275,7 +277,7 @@ export const ptBR = {
       },
       {
         title: "Entrega",
-        text: "Coloco no ar e te mostro como usar. Nos planos com mensalidade, o suporte continua depois da entrega.",
+        text: "Coloco no ar e te mostro como usar. Se precisar de algum ajuste depois, é só me chamar.",
       },
     ],
     note: "O orçamento é sem compromisso: você só decide depois de saber exatamente o que vai receber.",
@@ -283,8 +285,8 @@ export const ptBR = {
 
   contact: {
     eyebrow: "Contato",
-    title: "Me conta como funciona",
-    titleAccent: "o seu atendimento hoje.",
+    title: "Me conta o que a sua",
+    titleAccent: "empresa precisa.",
     text: "Numa conversa rápida pelo WhatsApp eu te digo o que faz sentido para a sua empresa e quanto custa. Sem compromisso.",
     primary: "Conversar no WhatsApp",
     channels: {
@@ -301,7 +303,7 @@ export const ptBR = {
       namePlaceholder: "Como posso te chamar?",
       type: "O que você precisa",
       optional: "opcional",
-      types: ["Site profissional", "Site + agenda online", "Sistema sob medida", "Outro"],
+      types: ["Site profissional", "Sistema sob medida", "Outro"],
       message: "Sobre a sua empresa",
       messagePlaceholder: "Conte em poucas palavras o que a sua empresa faz e o que você precisa.",
       sendWhatsapp: "Enviar pelo WhatsApp",
@@ -323,7 +325,7 @@ export const ptBR = {
 
   footer: {
     role: "Desenvolvedor Full Stack",
-    description: "Sites e agendas online para empresas de serviço de Jaraguá do Sul e região.",
+    description: "Sites e sistemas sob medida para empresas de Jaraguá do Sul e região.",
     navTitle: "Navegação",
     socialTitle: "Redes",
     contactTitle: "Contato",

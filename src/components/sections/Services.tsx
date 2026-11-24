@@ -34,7 +34,10 @@ export function Services() {
         <ul
           data-spotlight-group
           onPointerMove={onPointerMove}
-          className="mt-14 grid gap-4 lg:mt-16 lg:grid-cols-3"
+          className={cn(
+            "mt-14 grid gap-4 lg:mt-16",
+            services.items.length % 3 === 0 ? "lg:grid-cols-3" : "lg:grid-cols-2",
+          )}
         >
           {services.items.map((item, index) => {
             const Icon = serviceIcons[item.id];

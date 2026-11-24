@@ -248,7 +248,7 @@ async function createLead(request, env) {
   const finding = text(body.finding ?? "", 500).trim();
   const message =
     text(body.message ?? "", 2000).trim() ||
-    `Oi, tudo bem? Sou o Saymon, desenvolvedor aqui de Jaraguá. Vi a ${name} e queria te mostrar uma ideia de site para vocês. Fiz o site e a agenda online da ORTS Climatização (ortsclimatizacao.com.br). Quer que eu te mostre como poderia ficar o de vocês? Sem compromisso.`;
+    `Oi, tudo bem? Sou o Saymon, desenvolvedor aqui de Jaraguá. Vi a ${name} e queria te mostrar uma ideia de site para vocês. Faço sites e sistemas para empresas daqui, como o da ORTS Climatização (ortsclimatizacao.com.br). Quer que eu monte uma prévia de como ficaria o de vocês? Sem compromisso.`;
 
   const slug = name
     .normalize("NFD")

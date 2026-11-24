@@ -2,18 +2,18 @@ import type { Dictionary } from "./pt-BR";
 
 export const en: Dictionary = {
   meta: {
-    title: "Websites & online booking in Jaraguá do Sul, Brazil · Saymon",
+    title: "Websites & custom systems in Jaraguá do Sul, Brazil · Saymon",
     description:
-      "Websites and online booking for service businesses in Jaraguá do Sul (SC), Brazil, and the surrounding region. Business websites from R$ 1,500, with direct support on WhatsApp.",
-    ogAlt: "Saymon Oliveira de Castro, websites and online booking in Jaraguá do Sul",
+      "Websites and custom systems for businesses in Jaraguá do Sul (SC), Brazil, and the surrounding region. Business websites from R$ 1,500, with direct support on WhatsApp.",
+    ogAlt: "Saymon Oliveira de Castro, websites and custom systems in Jaraguá do Sul",
     /** Linha de serviços na imagem de compartilhamento. */
-    ogTags: ["Websites", "Online booking", "Custom systems"],
+    ogTags: ["Business websites", "Custom systems"],
     keywords: [
       "website development",
       "website design Jaraguá do Sul",
       "small business website",
-      "online booking",
-      "appointment scheduling system",
+      "business website",
+      "custom software",
       "landing page",
       "management system",
       "developer in Jaraguá do Sul",
@@ -61,9 +61,9 @@ export const en: Dictionary = {
 
   hero: {
     availability: "Serving Jaraguá do Sul and the region",
-    headline: "Websites and online booking for",
-    headlineAccent: "service businesses.",
-    lead: "I'm Saymon, a developer based in Jaraguá do Sul, Brazil. I build the website that sends customers straight to your WhatsApp and the schedule that organizes your appointments on your phone, with open slots at a glance and no double bookings.",
+    headline: "Websites and custom systems for",
+    headlineAccent: "businesses in the region.",
+    lead: "I'm Saymon, a full stack developer based in Jaraguá do Sul, Brazil. I build the website that brings customers from Google straight to your WhatsApp and, when spreadsheets can't keep up anymore, the system that runs your day-to-day.",
     primaryCta: "Get a quote on WhatsApp",
     secondaryCta: "See my work",
     note: "You talk directly to me, no middlemen.",
@@ -77,7 +77,7 @@ export const en: Dictionary = {
         languages: "Languages",
       },
       timeLabel: "Brasília time",
-      roleValue: "Websites & booking",
+      roleValue: "Websites & systems",
       baseValue: "Jaraguá do Sul, BR",
       statusValue: "Open to projects",
       languagesValue: "PT · EN",
@@ -95,27 +95,19 @@ export const en: Dictionary = {
       {
         id: "site",
         title: "Business website",
+        highlight: "Start here",
         price: { from: "from", value: "R$ 1,500" },
         description:
           "A fast page that looks great on phones, with your services, photos of your work and a button straight to WhatsApp. Set up for Google, so people looking for your service in town can find you.",
         tags: ["Businesses with only Instagram", "An old or broken website", "Getting quote requests"],
       },
       {
-        id: "agenda",
-        title: "Website + online booking",
-        highlight: "My specialty",
-        price: { from: "from", value: "R$ 3,000", extra: "+ R$ 149/month" },
-        description:
-          "The website plus a schedule on your phone, with open slots at a glance, no double bookings and confirmations on WhatsApp. If it makes sense, customers can book on their own through the site. The monthly fee covers hosting, maintenance and support.",
-        tags: ["Installation & maintenance", "Barbershops & beauty", "Appointment-based services"],
-      },
-      {
         id: "custom",
         title: "Custom system",
         price: { value: "Custom quote" },
         description:
-          "For when spreadsheets and WhatsApp can't keep up anymore: jobs, orders, quotes and your team in one place, with separate access for each employee. Like the Stainhaus system.",
-        tags: ["Stone & woodworking shops", "Field teams", "Order tracking"],
+          "For when spreadsheets and WhatsApp can't keep up anymore: scheduling, quotes, orders, jobs and your team in one place, with separate access for each person. Like the Stainhaus system and the ORTS schedule.",
+        tags: ["Scheduling & quotes", "Jobs & orders", "Field teams"],
       },
     ],
     cta: {
@@ -154,7 +146,7 @@ export const en: Dictionary = {
       {
         period: "Alongside",
         title: "Freelance projects",
-        place: "Websites, online booking and systems for businesses in the region",
+        place: "Websites and systems for businesses in the region",
       },
     ],
     award: {
@@ -173,7 +165,7 @@ export const en: Dictionary = {
       {
         id: "custom",
         title: "Made for your business",
-        text: "No templates: each website is designed for your brand, and the schedule follows the rules of how you work.",
+        text: "No templates: each website is designed for your brand, and each system follows the rules of how you work.",
       },
       {
         id: "mobile",
@@ -246,7 +238,7 @@ export const en: Dictionary = {
     },
     more: {
       title: "Yours could be next",
-      text: "Tell me how your business handles customers today and I'll tell you what makes sense to build, and what it costs.",
+      text: "Tell me what your business needs and I'll tell you what makes sense to build, and what it costs.",
       cta: "Chat on WhatsApp",
     },
   },
@@ -259,7 +251,7 @@ export const en: Dictionary = {
     steps: [
       {
         title: "Conversation",
-        text: "Tell me how you handle customers today and what's slowing you down. Text, voice message or a call all work.",
+        text: "Tell me what your business does and what you need. Text, voice message or a call all work.",
       },
       {
         title: "Proposal",
@@ -271,7 +263,7 @@ export const en: Dictionary = {
       },
       {
         title: "Launch",
-        text: "I put it live and show you how to use it. On monthly plans, support continues after launch.",
+        text: "I put it live and show you how to use it. If you need any changes later, just reach out.",
       },
     ],
     note: "Quotes come with no commitment: you only decide once you know exactly what you're getting.",
@@ -279,8 +271,8 @@ export const en: Dictionary = {
 
   contact: {
     eyebrow: "Contact",
-    title: "Tell me how your business",
-    titleAccent: "handles customers today.",
+    title: "Tell me what your",
+    titleAccent: "business needs.",
     text: "In a quick WhatsApp chat I'll tell you what makes sense for your business and what it costs. No strings attached.",
     primary: "Chat on WhatsApp",
     channels: {
@@ -297,7 +289,7 @@ export const en: Dictionary = {
       namePlaceholder: "What should I call you?",
       type: "What you need",
       optional: "optional",
-      types: ["Business website", "Website + online booking", "Custom system", "Something else"],
+      types: ["Business website", "Custom system", "Something else"],
       message: "About your business",
       messagePlaceholder: "Tell me briefly what your business does and what you need.",
       sendWhatsapp: "Send via WhatsApp",
@@ -319,7 +311,7 @@ export const en: Dictionary = {
 
   footer: {
     role: "Full Stack Developer",
-    description: "Websites and online booking for service businesses in Jaraguá do Sul and the region.",
+    description: "Websites and custom systems for businesses in Jaraguá do Sul and the region.",
     navTitle: "Navigation",
     socialTitle: "Social",
     contactTitle: "Contact",
