@@ -1,0 +1,516 @@
+/* Prévia do site da fonoaudióloga Karla do Amaral Costa.
+   Direção: clara e acolhedora, feita a partir do logo dela (a flor de quatro
+   pétalas e a trilha pontilhada). Sem fotos de banco de imagens. A Lexend foi
+   desenhada para facilitar a leitura, e o texto é grande de propósito: quem lê
+   é muita vez a família de um idoso. A ação principal é ligar, porque é assim
+   que a Karla gosta de atender. */
+
+@font-face {
+  font-family: "Lexend";
+  src: url("fontes/lexend.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Cores do logo */
+  --magenta: #e43c90;
+  --azul: #3084cc;
+  --amarelo: #e4c048;
+  --verde: #009c3c;
+  /* Versões escuras, para texto e botões com contraste */
+  --magenta-forte: #b3266c;
+  --azul-forte: #1f5f98;
+  --amarelo-forte: #7d5f00;
+  --verde-forte: #0b7434;
+  /* Fundos claros de cada pétala */
+  --magenta-claro: #fdf0f6;
+  --azul-claro: #eef5fc;
+  --amarelo-claro: #fdf7e2;
+  --verde-claro: #eaf6ef;
+  /* Tinta e papel */
+  --tinta: #252d35;
+  --tinta-2: #56626b;
+  --trilha: #aab3b9;
+  --linha: #e2e7ea;
+  --papel: #ffffff;
+  --papel-2: #f6f8f9;
+  --fonte: "Lexend", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --raio: 18px;
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font: 400 1.125rem/1.65 var(--fonte);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; }
+a { color: var(--magenta-forte); }
+[hidden] { display: none !important; }
+
+:focus-visible {
+  outline: 3px solid var(--azul);
+  outline-offset: 3px;
+}
+
+.oculto {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.caixa {
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+
+.i {
+  width: 1.2em;
+  height: 1.2em;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.i-cheio { fill: currentColor; stroke: none; }
+
+/* Pétalas da flor: a cor vem daqui, o desenho vem do HTML. */
+.p-magenta { fill: var(--magenta); stroke: var(--magenta); }
+.p-azul { fill: var(--azul); stroke: var(--azul); }
+.p-amarelo { fill: var(--amarelo); stroke: var(--amarelo); }
+.p-verde { fill: var(--verde); stroke: var(--verde); }
+.p-magenta,
+.p-azul,
+.p-amarelo,
+.p-verde { stroke-width: 2.4; stroke-linejoin: round; }
+
+.previa {
+  margin: 0;
+  padding: 7px max(16px, env(safe-area-inset-right, 0px)) 7px max(16px, env(safe-area-inset-left, 0px));
+  background: var(--papel-2);
+  color: var(--tinta-2);
+  font-size: 0.8125rem;
+  text-align: center;
+}
+
+/* ---------- Botões ---------- */
+
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 0 26px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--magenta-forte);
+  color: #fff;
+  font: 500 1.0625rem/1 var(--fonte);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 10px 22px -14px rgba(179, 38, 108, 0.8);
+  transition: background-color 0.2s, transform 0.15s;
+}
+.botao:hover { background: #9b1f5c; }
+.botao:active { transform: translateY(1px); }
+.botao .i { width: 22px; height: 22px; }
+.botao-wa { background: var(--verde-forte); box-shadow: 0 10px 22px -14px rgba(11, 116, 52, 0.8); }
+.botao-wa:hover { background: #095f2b; }
+.botao-pequeno { min-height: 46px; padding: 0 18px; font-size: 1rem; }
+.botao-pequeno .i { width: 20px; height: 20px; }
+.botao-grande { min-height: 62px; padding: 0 30px; font-size: 1.1875rem; }
+
+/* ---------- Títulos ---------- */
+
+/* Sobretítulo espaçado, como o "fonoaudióloga" do logo. */
+.sobretitulo {
+  margin: 0 0 14px;
+  color: var(--tinta-2);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3 { text-wrap: balance; }
+
+h2 {
+  margin: 0;
+  font-size: clamp(1.875rem, 5vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.secao { padding-block: clamp(64px, 9vw, 112px); }
+.secao-topo { max-width: 44rem; margin-bottom: clamp(32px, 5vw, 52px); }
+.secao-texto { margin: 16px 0 0; color: var(--tinta-2); }
+
+/* ---------- Topo ---------- */
+
+.topo { border-bottom: 1px solid var(--linha); }
+.topo-in { display: flex; align-items: center; gap: 16px; min-height: 76px; }
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  margin-right: auto;
+  color: var(--tinta);
+  text-decoration: none;
+}
+.marca-flor { width: 40px; height: 40px; flex: none; }
+.marca-nome {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  color: var(--magenta-forte);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+.marca-nome small {
+  color: var(--tinta-2);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+/* ---------- Abertura ---------- */
+
+.abertura { padding-block: 36px 64px; overflow: hidden; }
+.abertura-in { display: grid; gap: 8px; }
+.abertura-arte { position: relative; order: -1; width: min(100%, 236px); margin: 0 auto; }
+.arte { display: block; width: 100%; height: auto; }
+.trilha {
+  fill: none;
+  stroke: var(--trilha);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 10 13;
+}
+.selo-anos {
+  position: absolute;
+  right: 0;
+  bottom: 8%;
+  display: grid;
+  place-items: center;
+  width: 39%;
+  aspect-ratio: 1;
+  margin: 0;
+  border-radius: 50%;
+  background: var(--magenta-claro);
+  color: var(--magenta-forte);
+  font-size: clamp(0.8125rem, 2.6vw, 0.9375rem);
+  font-weight: 500;
+  line-height: 1.15;
+  text-align: center;
+  align-content: center;
+  padding: 10px;
+}
+.selo-anos strong {
+  display: block;
+  font-size: 2.7em;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.abertura h1 {
+  margin: 0;
+  font-size: clamp(2.125rem, 7.4vw, 3.625rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+.abertura-lead { max-width: 36rem; margin: 20px 0 0; color: var(--tinta-2); font-size: 1.1875rem; }
+.acoes { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.acoes .botao { flex: 1 1 auto; }
+.abertura-nota { margin: 18px 0 0; color: var(--tinta-2); font-size: 1rem; }
+.abertura-nota strong { color: var(--tinta); font-weight: 600; white-space: nowrap; }
+.avaliacao {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin: 14px 0 0;
+  color: var(--tinta-2);
+  font-size: 1rem;
+}
+.avaliacao strong { color: var(--tinta); }
+.estrelas { display: inline-flex; gap: 1px; color: var(--amarelo); }
+.estrelas .i { width: 18px; height: 18px; }
+
+/* ---------- Fases da vida ---------- */
+
+.fases { background: var(--papel-2); }
+.fases-lista {
+  position: relative;
+  display: grid;
+  gap: 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* A trilha pontilhada do logo liga as três fases. */
+.fases-lista::before {
+  content: "";
+  position: absolute;
+  top: 30px;
+  bottom: 30px;
+  left: 34px;
+  width: 6px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='23'%3E%3Cline x1='3' y1='3' x2='3' y2='13' stroke='%23aab3b9' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E") repeat-y;
+}
+.fase {
+  position: relative;
+  padding: 26px 24px 26px 84px;
+  border-radius: var(--raio);
+  background: var(--papel);
+  box-shadow: 0 1px 0 var(--linha), 0 16px 32px -26px rgba(37, 45, 53, 0.5);
+}
+.petala {
+  position: absolute;
+  top: 26px;
+  left: 22px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+}
+.fase-bebes .petala { background: var(--amarelo); }
+.fase-criancas .petala { background: var(--azul); }
+.fase-idosos .petala { background: var(--verde); }
+.fase h3 { margin: 0 0 10px; font-size: 1.5rem; font-weight: 600; line-height: 1.2; }
+.fase-bebes h3 { color: var(--amarelo-forte); }
+.fase-criancas h3 { color: var(--azul-forte); }
+.fase-idosos h3 { color: var(--verde-forte); }
+.fase ul { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.fase ul li { position: relative; padding-left: 20px; color: var(--tinta); line-height: 1.5; }
+.fase ul li::before {
+  content: "";
+  position: absolute;
+  top: 0.62em;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--trilha);
+}
+
+/* ---------- Atendimento ---------- */
+
+.passos {
+  display: grid;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.passos li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 18px; align-items: start; align-content: start; }
+.passo-num {
+  display: grid;
+  grid-row: span 2;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--magenta-claro);
+  color: var(--magenta-forte);
+  font-size: 1.375rem;
+  font-weight: 600;
+}
+.passos li:nth-child(2) .passo-num { background: var(--azul-claro); color: var(--azul-forte); }
+.passos li:nth-child(3) .passo-num { background: var(--verde-claro); color: var(--verde-forte); }
+.passos h3 { margin: 10px 0 0; font-size: 1.375rem; font-weight: 600; line-height: 1.25; }
+.passos p { margin: 6px 0 0; color: var(--tinta-2); }
+
+/* ---------- Sobre ---------- */
+
+.sobre { background: var(--magenta-claro); }
+.sobre-in { display: grid; gap: 18px; align-items: center; }
+.sobre-anos {
+  margin: 0;
+  color: var(--magenta-forte);
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1;
+}
+.sobre-anos strong {
+  display: block;
+  font-size: clamp(5rem, 22vw, 9.5rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+}
+.citacao { margin: 0; }
+.citacao blockquote { margin: 0; }
+.citacao p {
+  margin: 0;
+  font-size: clamp(1.375rem, 3.6vw, 2rem);
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+.citacao p::before { content: "“"; }
+.citacao p::after { content: "”"; }
+.citacao figcaption { margin-top: 20px; color: var(--tinta-2); font-size: 1rem; }
+.citacao figcaption span {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--papel);
+  color: var(--verde-forte);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* ---------- Contato ---------- */
+
+.contato-grade { display: grid; gap: 16px; }
+.cartao {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  background: var(--papel);
+}
+.cartao h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 12px;
+  font-size: 1.1875rem;
+  font-weight: 600;
+}
+.cartao h3 .i { width: 24px; height: 24px; color: var(--magenta); }
+.cartao p { margin: 0; color: var(--tinta); line-height: 1.6; }
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  margin-top: 8px;
+  font-weight: 500;
+}
+.link .i { width: 18px; height: 18px; }
+.cartao dl { display: grid; gap: 12px; margin: 0; }
+.cartao dl div { min-width: 0; }
+.cartao dt { color: var(--tinta-2); font-size: 0.9375rem; }
+.cartao dd {
+  margin: 2px 0 0;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.cartao dd a { color: var(--tinta); text-decoration-color: var(--trilha); text-underline-offset: 3px; }
+.horarios div { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+.final {
+  margin-top: 44px;
+  padding: 30px 24px;
+  border-radius: var(--raio);
+  background: var(--papel-2);
+  text-align: center;
+}
+.final p { margin: 0; font-size: 1.25rem; font-weight: 500; }
+.final .acoes { justify-content: center; margin-top: 20px; }
+
+.rodape {
+  padding-block: 28px calc(100px + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--linha);
+  color: var(--tinta-2);
+  font-size: 0.9375rem;
+}
+.rodape p { margin: 0; }
+.rodape strong { color: var(--tinta); font-weight: 600; }
+.rodape-in { display: grid; gap: 6px; }
+
+/* Botão flutuante de ligar (aparece depois da abertura). */
+.flutuante {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right, 0px));
+  bottom: max(16px, calc(env(safe-area-inset-bottom, 0px) + 10px));
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: var(--magenta-forte);
+  color: #fff;
+  box-shadow: 0 14px 28px -10px rgba(179, 38, 108, 0.7);
+  transform: translateY(150%);
+  transition: transform 0.3s ease;
+}
+.flutuante.ver { transform: none; }
+.flutuante .i { width: 28px; height: 28px; }
+
+/* ---------- Telas maiores ---------- */
+
+@media (min-width: 720px) {
+  .sobretitulo { letter-spacing: 0.22em; }
+  .acoes .botao { flex: 0 0 auto; }
+  .contato-grade { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .passos { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+  .passos li { grid-template-columns: 1fr; }
+  .passo-num { grid-row: auto; }
+  .passos h3 { margin-top: 14px; }
+}
+
+@media (min-width: 900px) {
+  .abertura { padding-block: 64px 96px; }
+  .abertura-in { grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: 48px; align-items: center; }
+  .abertura-arte { order: 0; width: 100%; max-width: 380px; }
+  .fases-lista { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding-top: 34px; }
+  /* No computador a trilha corre na horizontal, por cima dos cartões. */
+  .fases-lista::before {
+    top: 30px;
+    bottom: auto;
+    left: 12%;
+    right: 12%;
+    width: auto;
+    height: 6px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='23' height='6'%3E%3Cline x1='3' y1='3' x2='13' y2='3' stroke='%23aab3b9' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+  }
+  .fase { padding: 56px 28px 30px; text-align: left; }
+  .petala { top: -16px; left: 50%; margin-left: -15px; }
+  .sobre-in { grid-template-columns: auto minmax(0, 1fr); gap: 56px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after { transition-duration: 0.01ms !important; }
+}
